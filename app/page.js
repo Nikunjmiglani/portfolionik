@@ -1,103 +1,136 @@
-import Image from "next/image";
+import {
+  SiReact,
+  SiTailwindcss,
+  SiBootstrap,
+  SiCplusplus,
+  SiCss3,
+  SiC,
+  SiPython,
+  SiSolidity,
+  SiHtml5,
+  SiPostgresql,
+  SiPrisma,
+  SiNodedotjs,
+  SiFirebase,
+  SiTensorflow,
+  SiNginx,
+  SiExpress,
+  SiOpenai,
+} from "react-icons/si";
+
+import GitHubCalendar from 'react-github-calendar';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const tools = [
+    { name: "React.js", icon: <SiReact color="#61DAFB" /> },
+    { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
+    { name: "Bootstrap", icon: <SiBootstrap color="#7952B3" /> },
+    { name: "C++", icon: <SiCplusplus color="#00599C" /> },
+    { name: "CSS", icon: <SiCss3 color="#264de4" /> },
+    { name: "C", icon: <SiC color="#A8B9CC" /> },
+    { name: "Python", icon: <SiPython color="#FFD43B" /> },
+    { name: "Solidity", icon: <SiSolidity color="#363636" /> },
+    { name: "HTML", icon: <SiHtml5 color="#e34c26" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
+    { name: "Prisma", icon: <SiPrisma color="#0c344b" /> },
+    { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
+    { name: "Firebase", icon: <SiFirebase color="#FFCA28" /> },
+    { name: "AI", icon: <SiOpenai color="#03DAC6" /> },
+    { name: "Nginx", icon: <SiNginx color="#009639" /> },
+    { name: "Express", icon: <SiExpress color="#fff" /> },
+    { name: "TensorFlow", icon: <SiTensorflow color="#FF6F00" /> },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="text-white">
+      <div className="border-t border-gray-800 mx-6 sm:mx-20"></div>
+
+      <section className="flex flex-col items-center gap-2">
+        <div className="mt-15 items-center">
+          <img src="Nikunj.jpg" width={70} className="border rounded-full" alt="" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+        <div className="font-light opacity-65 font-mono hover:scale-110 transition-transform duration-200">
+          I'm Nikunj 👋
+        </div>
+
+        {/* About Me Section */}
+        <div className="mt-8 max-w-3xl text-center px-4 space-y-4 text-gray-300">
+          <div>
+            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
+            <p className="opacity-70">
+              Hello! I'm a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I'm Proficient in Full Stack Development and learning Cybersecurity.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
+            <p className="opacity-70">
+              I’ve already delivered freelance projects and am currently diving deep into cybersecurity and Development. I love combining practical experience with continuous learning—whether it's building web apps, securing systems, or experimenting with tech stacks.
+            </p>
+            <br/>
+            <p className="opacity-70">
+              When not coding, I read Finance, Listen to music or go out.
+            </p>
+            <p className="opacity-70">
+              I'm <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.{' '}
+              <a href="#contact" className="text-cyan-400 hover:underline">Contact Me</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+
+     <section className="mt-10 overflow-hidden">
+  <h2 className="text-white text-xl font-mono mb-4 ml-5">Tools that I have used</h2>
+
+  <div className="w-full overflow-hidden">
+  <div
+    className="flex gap-4 w-max"
+    style={{
+      animation: "scroll-horizontal 20s linear infinite",
+    }}
+  >
+    {[...tools, ...tools].map((tool, i) => (
+      <div
+        key={i}
+        className="flex items-center gap-2 bg-[#1f1f1f] border border-gray-600 text-white rounded-full px-4 py-2 text-sm"
+      >
+        <span className="text-xl">{tool.icon}</span>
+        <span>{tool.name}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+</section>
+<section className="mt-20 px-4 text-white text-center max-w-6xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4">GitHub Activity</h2>
+
+      {/* Make this container responsive and avoid overflow */}
+      <div className="w-full overflow-hidden">
+        <div className="flex justify-center flex-wrap">
+          <GitHubCalendar
+            username="Nikunjmiglani"
+            blockSize={15}
+            blockMargin={5}
+            fontSize={16}
+            colorScheme="dark"
+            theme={{
+              light: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127'],
+              dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+            }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        </div>
+      </div>
+
+      <p className="text-sm text-gray-400 mt-2">
+        📢 This graph includes only <strong>public contributions</strong>.
+      </p>
+      <p className="text-sm text-gray-400">
+        🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">200</span>
+      </p>
+    </section>
+    </main>
+  )
 }
