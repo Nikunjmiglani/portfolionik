@@ -7,7 +7,7 @@ const projects = [
     tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
     desc: "Official website made for a leading interior design firm in Delhi.",
     img: "/Miggla.png", 
-    live: "https://miggla.vercel.app/",
+    live: "https://www.miggla.com/",
     
   },
   {
