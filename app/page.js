@@ -60,10 +60,13 @@ import Image from 'next/image';
 import { motion } from "framer-motion";
 import GitHubCalendar from 'react-github-calendar';
 import { useEffect, useState } from "react";
+
+// eslint-disable-next-line react/no-unescaped-entities
 const words = ["I'm", "Nikunj"];
 
+
 export default function Home() {
-   const [showWords, setShowWords] = useState([]);
+  const [showWords, setShowWords] = useState([]);
 
   useEffect(() => {
     words.forEach((word, index) => {
@@ -72,6 +75,7 @@ export default function Home() {
       }, index * 500); // word-by-word delay
     });
   }, []);
+
   const tools = [
     { name: "React.js", icon: <SiReact color="#61DAFB" /> },
     { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
@@ -96,76 +100,88 @@ export default function Home() {
     <main className="text-white">
       <div className="border-t border-gray-800 mx-6 sm:mx-20"></div>
 
-     <section className="flex flex-col items-center gap-2">
-      <div className="mt-10 items-center">
-        <Image
-          src="/Nikunj.jpg"
-          width={70}
-          height={70}
-          className="border rounded-full"
-          alt="Nikunj"
-        />
-      </div>
-
-      
-      <div className="font-light opacity-65 font-mono text-xl flex items-center gap-3">
-        {showWords.map((word, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {word}
-          </motion.span>
-        ))}
-
-        {/* Waving Emoji */}
-        {showWords.length === words.length && (
-          <motion.span
-            className="inline-block"
-            animate={{ rotate: [0, 20, -10, 20, -10, 0] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatDelay: 2,
-            }}
-            style={{ display: "inline-block", transformOrigin: "70% 70%" }}
-          >
-            👋
-          </motion.span>
-        )}
-      </div>
-
-      {/* About Me Section */}
-      <div className="mt-5 max-w-3xl text-center px-4 space-y-4 text-gray-300">
-        <div>
-          <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
-          <p className="opacity-70">
-            Hello! I'm a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I'm proficient in Full Stack Development and learning Cybersecurity.
-          </p>
+      <section className="flex flex-col items-center gap-2">
+        <div className="mt-10 items-center">
+          <Image
+            src="/Nikunj.jpg"
+            width={70}
+            height={70}
+            className="border rounded-full"
+            alt="Nikunj"
+          />
         </div>
 
-        <div>
-          <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
-          <p className="opacity-70">
-            I've already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning—whether it's building web apps, securing systems, or experimenting with tech stacks.
-          </p>
-          <br />
-          <p className="opacity-70">
-            When not coding, I read Finance, listen to music, or go out.
-          </p>
-          <p className="opacity-70">
-            I'm <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.{" "}
-            
-          </p>
+        <div className="font-light opacity-65 font-mono text-xl flex items-center gap-3">
+          {showWords.map((word, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {word}
+            </motion.span>
+          ))}
+
+          {showWords.length === words.length && (
+            <motion.span
+              className="inline-block"
+              animate={{ rotate: [0, 20, -10, 20, -10, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatDelay: 2,
+              }}
+              style={{ display: "inline-block", transformOrigin: "70% 70%" }}
+            >
+              👋
+            </motion.span>
+          )}
         </div>
+
+        <div className="mt-5 max-w-3xl text-center px-4 space-y-4 text-gray-300">
+          <div>
+            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
+            <p className="opacity-70">
+              Hello! I&apos;m a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I&apos;m proficient in Full Stack Development and learning Cybersecurity.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
+            <p className="opacity-70">
+              I&apos;ve already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning—whether it&apos;s building web apps, securing systems, or experimenting with tech stacks.
+            </p>
+            <br />
+            <p className="opacity-70">
+              When not coding, I read Finance, listen to music, or go out.
+            </p>
+            <p className="opacity-70">
+              I&apos;m <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.{" "}
+            </p>
+          </div>
+
         <div className="flex mt-5 text-white justify-center items-center gap-3">
-          <button className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80">Get Resume</button>
-          <button className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80">Contact Me</button>
+  <a
+    href="/Nikunj_Resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
+    download
+  >
+    Get Resume
+  </a>
+
+  <a
+    href="mailto:your.email@example.com"
+    className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
+  >
+    Contact Me
+  </a>
+</div>
+
         </div>
-      </div>
-    </section>
+      </section>
 
       <section className="mt-10 overflow-hidden">
         <h2 className="text-white text-xl font-mono mb-4 ml-5">Tools that I have used</h2>
@@ -215,50 +231,48 @@ export default function Home() {
           🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">200</span>
         </p>
       </section>
+
       <section className="py-16 px-6">
-      <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
+        <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {projects.map((project, index) => (
-          <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
-            {/* Project Image */}
-            <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
-              <Image
-                src={project.img}
-                alt={project.title}
-                layout="fill"
-                
-                className="rounded-md"
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {projects.map((project, index) => (
+            <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
+              <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
+                <Image
+                  src={project.img}
+                  alt={project.title}
+                  layout="fill"
+                  className="rounded-md"
+                />
+              </div>
+
+              <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+              <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
+              <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
+
+              <div className="flex items-center gap-4 mt-4 text-sm font-medium">
+                <a
+                  href={project.live}
+                  target="_blank"
+                  className="text-cyan-400 hover:underline flex items-center gap-1"
+                >
+                  <FaExternalLinkAlt /> Live Preview
+                </a>
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  className="text-cyan-400 hover:underline flex items-center gap-1"
+                >
+                  <FaGithub /> Repo Url
+                </a>
+              </div>
             </div>
-
-            {/* Project Info */}
-            <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-            <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
-            <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
-
-            {/* Links */}
-            <div className="flex items-center gap-4 mt-4 text-sm font-medium">
-              <a
-                href={project.live}
-                target="_blank"
-                className="text-cyan-400 hover:underline flex items-center gap-1"
-              >
-                <FaExternalLinkAlt /> Live Preview
-              </a>
-              <a
-                href={project.repo}
-                target="_blank"
-                className="text-cyan-400 hover:underline flex items-center gap-1"
-              >
-                <FaGithub /> Repo Url
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
+
 
