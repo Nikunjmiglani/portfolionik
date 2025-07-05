@@ -4,11 +4,11 @@ import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 const projects = [
   {
     title: "Miggla Website",
-    tech: "Next.js / Sanity CMS / Tailwind CSS",
+    tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
     desc: "Official website made for a leading interior design firm in Delhi.",
     img: "/Miggla.png", 
     live: "https://miggla.vercel.app/",
-    repo: "#",
+    
   },
   {
     title: "Kaira Landing page",
@@ -18,21 +18,21 @@ const projects = [
     live: "https://landing-page-ecomm.vercel.app/",
     repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
   },
-  {
+   {
+    title: "Portfolio",
+    tech: "Next.js / Framer / Tailwind CSS",
+    desc: "Personal portfolio made using Next.js & Tailwind CSS.",
+    img: "/pp.png",
+    live: "https://nikcodes.vercel.app/",
+    repo: "https://github.com/Nikunjmiglani/portfolionik.git",
+  },
+ {
     title: "Get Me A Chai",
     tech: "Next.js / MongoDb /Tailwind CSS / Sanity CMS",
     desc: "Crowd Funding Application made as a part of Course with some personal modifications.",
     img: "/getmeachai.png",
-    live: "#",
+   
     repo: "https://github.com/Nikunjmiglani/Get-Me-A-Chai.git",
-  },
-  {
-    title: "WattX",
-    tech: "Next.js / Framer / Tailwind CSS / Clerk",
-    desc: "Landing page for a blockchain-based energy trading platform with a modern design and smooth animations.",
-    img: "/projects/wattx.png",
-    live: "#",
-    repo: "#",
   },
 ];
 
@@ -54,6 +54,8 @@ import {
   SiNginx,
   SiExpress,
   SiOpenai,
+  SiNextdotjs,
+  SiMongodb,
 } from "react-icons/si";
 
 import Image from 'next/image';
@@ -84,16 +86,16 @@ export default function Home() {
     { name: "CSS", icon: <SiCss3 color="#264de4" /> },
     { name: "C", icon: <SiC color="#A8B9CC" /> },
     { name: "Python", icon: <SiPython color="#FFD43B" /> },
-    { name: "Solidity", icon: <SiSolidity color="#363636" /> },
+    { name: "Next.js", icon: <SiNextdotjs color="#363636" /> },
     { name: "HTML", icon: <SiHtml5 color="#e34c26" /> },
     { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
-    { name: "Prisma", icon: <SiPrisma color="#0c344b" /> },
+   
     { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
-    { name: "Firebase", icon: <SiFirebase color="#FFCA28" /> },
+   
     { name: "AI", icon: <SiOpenai color="#03DAC6" /> },
-    { name: "Nginx", icon: <SiNginx color="#009639" /> },
+    
     { name: "Express", icon: <SiExpress color="#fff" /> },
-    { name: "TensorFlow", icon: <SiTensorflow color="#FF6F00" /> },
+    { name: "MongoDB", icon: <SiMongodb color="#FF6F00" /> },
   ];
 
   return (
@@ -163,7 +165,7 @@ export default function Home() {
 
         <div className="flex mt-5 text-white justify-center items-center gap-3">
   <a
-    href="/Nikunj_Resume.pdf"
+    href="/nik.pdf"
     target="_blank"
     rel="noopener noreferrer"
     className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
@@ -173,7 +175,7 @@ export default function Home() {
   </a>
 
   <a
-    href="mailto:your.email@example.com"
+    href="mailto:niikkunjmiglani@gmail.com"
     className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
   >
     Contact Me
@@ -232,45 +234,53 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="py-16 px-6">
-        <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
+    <section className="py-16 px-6">
+  <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {projects.map((project, index) => (
-            <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
-              <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
-                <Image
-                  src={project.img}
-                  alt={project.title}
-                  layout="fill"
-                  className="rounded-md"
-                />
-              </div>
-
-              <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-              <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
-              <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
-
-              <div className="flex items-center gap-4 mt-4 text-sm font-medium">
-                <a
-                  href={project.live}
-                  target="_blank"
-                  className="text-cyan-400 hover:underline flex items-center gap-1"
-                >
-                  <FaExternalLinkAlt /> Live Preview
-                </a>
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  className="text-cyan-400 hover:underline flex items-center gap-1"
-                >
-                  <FaGithub /> Repo Url
-                </a>
-              </div>
-            </div>
-          ))}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    {projects.map((project, index) => (
+      <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
+        <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
+          <Image
+            src={project.img}
+            alt={project.title}
+            layout="fill"
+            className="rounded-md"
+          />
         </div>
-      </section>
+
+        <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+        <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
+        <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
+
+        {/* Conditionally render links */}
+        <div className="flex items-center gap-4 mt-4 text-sm font-medium">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:underline flex items-center gap-1"
+            >
+              <FaExternalLinkAlt /> Live Preview
+            </a>
+          )}
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:underline flex items-center gap-1"
+            >
+              <FaGithub /> Repo Url
+            </a>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
     </main>
   );
 }
