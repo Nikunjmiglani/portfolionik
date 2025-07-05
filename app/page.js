@@ -1,4 +1,40 @@
 'use client';
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+
+const projects = [
+  {
+    title: "Miggla Website",
+    tech: "Next.js / Sanity CMS / Tailwind CSS",
+    desc: "Official website made for a leading interior design firm in Delhi.",
+    img: "/Miggla.png", 
+    live: "https://miggla.vercel.app/",
+    repo: "#",
+  },
+  {
+    title: "Kaira Landing page",
+    tech: "Next.js / Tailwind CSS ",
+    desc: "Responsive E-comm Landing Page.",
+    img: "/kaira.png",
+    live: "https://landing-page-ecomm.vercel.app/",
+    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
+  },
+  {
+    title: "Get Me A Chai",
+    tech: "Next.js / MongoDb /Tailwind CSS / Sanity CMS",
+    desc: "Crowd Funding Application made as a part of Course with some personal modifications.",
+    img: "/getmeachai.png",
+    live: "#",
+    repo: "https://github.com/Nikunjmiglani/Get-Me-A-Chai.git",
+  },
+  {
+    title: "WattX",
+    tech: "Next.js / Framer / Tailwind CSS / Clerk",
+    desc: "Landing page for a blockchain-based energy trading platform with a modern design and smooth animations.",
+    img: "/projects/wattx.png",
+    live: "#",
+    repo: "#",
+  },
+];
 
 import {
   SiReact,
@@ -21,9 +57,21 @@ import {
 } from "react-icons/si";
 
 import Image from 'next/image';
+import { motion } from "framer-motion";
 import GitHubCalendar from 'react-github-calendar';
+import { useEffect, useState } from "react";
+const words = ["I'm", "Nikunj"];
 
 export default function Home() {
+   const [showWords, setShowWords] = useState([]);
+
+  useEffect(() => {
+    words.forEach((word, index) => {
+      setTimeout(() => {
+        setShowWords((prev) => [...prev, word]);
+      }, index * 500); // word-by-word delay
+    });
+  }, []);
   const tools = [
     { name: "React.js", icon: <SiReact color="#61DAFB" /> },
     { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
@@ -48,47 +96,76 @@ export default function Home() {
     <main className="text-white">
       <div className="border-t border-gray-800 mx-6 sm:mx-20"></div>
 
-      <section className="flex flex-col items-center gap-2">
-        <div className="mt-15 items-center">
-          <Image
-            src="/Nikunj.jpg"
-            width={70}
-            height={70}
-            className="border rounded-full"
-            alt="Nikunj"
-          />
-        </div>
-        <div className="font-light opacity-65 font-mono hover:scale-110 transition-transform duration-200">
-          {"I'm Nikunj 👋"}
+     <section className="flex flex-col items-center gap-2">
+      <div className="mt-10 items-center">
+        <Image
+          src="/Nikunj.jpg"
+          width={70}
+          height={70}
+          className="border rounded-full"
+          alt="Nikunj"
+        />
+      </div>
+
+      
+      <div className="font-light opacity-65 font-mono text-xl flex items-center gap-3">
+        {showWords.map((word, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {word}
+          </motion.span>
+        ))}
+
+        {/* Waving Emoji */}
+        {showWords.length === words.length && (
+          <motion.span
+            className="inline-block"
+            animate={{ rotate: [0, 20, -10, 20, -10, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatDelay: 2,
+            }}
+            style={{ display: "inline-block", transformOrigin: "70% 70%" }}
+          >
+            👋
+          </motion.span>
+        )}
+      </div>
+
+      {/* About Me Section */}
+      <div className="mt-5 max-w-3xl text-center px-4 space-y-4 text-gray-300">
+        <div>
+          <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
+          <p className="opacity-70">
+            Hello! I'm a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I'm proficient in Full Stack Development and learning Cybersecurity.
+          </p>
         </div>
 
-        {/* About Me Section */}
-        <div className="mt-8 max-w-3xl text-center px-4 space-y-4 text-gray-300">
-          <div>
-            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
-            <p className="opacity-70">
-              {"Hello! I'm a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I'm proficient in Full Stack Development and learning Cybersecurity."}
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
-            <p className="opacity-70">
-              {"I've already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning—whether it's building web apps, securing systems, or experimenting with tech stacks."}
-            </p>
-            <br />
-            <p className="opacity-70">
-              {"When not coding, I read Finance, listen to music, or go out."}
-            </p>
-            <p className="opacity-70">
-              {"I'm "}
-              <span className="text-white font-semibold">open to work</span>
-              {", freelance, or collaborate. "}
-              <a href="#contact" className="text-cyan-400 hover:underline">Contact Me</a>.
-            </p>
-          </div>
+        <div>
+          <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
+          <p className="opacity-70">
+            I've already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning—whether it's building web apps, securing systems, or experimenting with tech stacks.
+          </p>
+          <br />
+          <p className="opacity-70">
+            When not coding, I read Finance, listen to music, or go out.
+          </p>
+          <p className="opacity-70">
+            I'm <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.{" "}
+            
+          </p>
         </div>
-      </section>
+        <div className="flex mt-5 text-white justify-center items-center gap-3">
+          <button className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80">Get Resume</button>
+          <button className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80">Contact Me</button>
+        </div>
+      </div>
+    </section>
 
       <section className="mt-10 overflow-hidden">
         <h2 className="text-white text-xl font-mono mb-4 ml-5">Tools that I have used</h2>
@@ -112,8 +189,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-20 px-4 text-white text-center max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-4">GitHub Activity</h2>
+      <section className="mt-15 px-4 text-white text-center max-w-6xl mx-auto">
+        <h2 className="text-3xl font-mono mb-10">GitHub Activity</h2>
 
         <div className="w-full overflow-hidden">
           <div className="flex justify-center flex-wrap">
@@ -138,6 +215,49 @@ export default function Home() {
           🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">200</span>
         </p>
       </section>
+      <section className="py-16 px-6">
+      <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {projects.map((project, index) => (
+          <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
+            {/* Project Image */}
+            <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
+              <Image
+                src={project.img}
+                alt={project.title}
+                layout="fill"
+                
+                className="rounded-md"
+              />
+            </div>
+
+            {/* Project Info */}
+            <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+            <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
+            <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
+
+            {/* Links */}
+            <div className="flex items-center gap-4 mt-4 text-sm font-medium">
+              <a
+                href={project.live}
+                target="_blank"
+                className="text-cyan-400 hover:underline flex items-center gap-1"
+              >
+                <FaExternalLinkAlt /> Live Preview
+              </a>
+              <a
+                href={project.repo}
+                target="_blank"
+                className="text-cyan-400 hover:underline flex items-center gap-1"
+              >
+                <FaGithub /> Repo Url
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
     </main>
   );
 }
