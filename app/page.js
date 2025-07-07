@@ -1,7 +1,7 @@
 'use client';
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import {
-  
+
   FaLinkedinIn,
   FaInstagram,
   FaDiscord,
@@ -15,9 +15,9 @@ const projects = [
     title: "Miggla Website",
     tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
     desc: "Official website made for a leading interior design firm in Delhi.",
-    img: "/Miggla.png", 
+    img: "/Miggla.png",
     live: "https://www.miggla.com/",
-    
+
   },
   {
     title: "Kaira Landing page",
@@ -27,7 +27,7 @@ const projects = [
     live: "https://landing-page-ecomm.vercel.app/",
     repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
   },
-   {
+  {
     title: "Portfolio",
     tech: "Next.js / Framer / Tailwind CSS",
     desc: "Personal portfolio made using Next.js & Tailwind CSS.",
@@ -35,12 +35,12 @@ const projects = [
     live: "https://nikcodes.vercel.app/",
     repo: "https://github.com/Nikunjmiglani/portfolionik.git",
   },
- {
+  {
     title: "Get Me A Chai",
     tech: "Next.js / MongoDb /Tailwind CSS / Sanity CMS",
     desc: "Crowd Funding Application made as a part of Course with some personal modifications.",
     img: "/getmeachai.png",
-   
+
     repo: "https://github.com/Nikunjmiglani/Get-Me-A-Chai.git",
   },
 ];
@@ -98,11 +98,11 @@ export default function Home() {
     { name: "Next.js", icon: <SiNextdotjs color="#363636" /> },
     { name: "HTML", icon: <SiHtml5 color="#e34c26" /> },
     { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
-   
+
     { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
-   
+
     { name: "AI", icon: <SiOpenai color="#03DAC6" /> },
-    
+
     { name: "Express", icon: <SiExpress color="#fff" /> },
     { name: "MongoDB", icon: <SiMongodb color="#FF6F00" /> },
   ];
@@ -172,24 +172,24 @@ export default function Home() {
             </p>
           </div>
 
-        <div className="flex mt-5 text-white justify-center items-center gap-3">
-  <a
-    href="/nik.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
-    download
-  >
-    Get Resume
-  </a>
+          <div className="flex mt-5 text-white justify-center items-center gap-3">
+            <a
+              href="/nik.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
+              download
+            >
+              Get Resume
+            </a>
 
-  <a
-    href="mailto:niikkunjmiglani@gmail.com"
-    className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
-  >
-    Contact Me
-  </a>
-</div>
+            <a
+              href="mailto:niikkunjmiglani@gmail.com"
+              className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
+            >
+              Contact Me
+            </a>
+          </div>
 
         </div>
       </section>
@@ -243,176 +243,172 @@ export default function Home() {
         </p>
       </section>
 
-    <section className="py-16 px-6">
-  <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
+      <section className="py-16 px-6">
+        <h2 className="text-white text-3xl text-center font-mono mb-10">Featured Projects</h2>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-    {projects.map((project, index) => (
-      <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
-        <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
-          <Image
-            src={project.img}
-            alt={project.title}
-            layout="fill"
-            className="rounded-md"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {projects.map((project, index) => (
+            <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
+              <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
+                <Image
+                  src={project.img}
+                  alt={project.title}
+                  layout="fill"
+                  className="rounded-md"
+                />
+              </div>
+
+              <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+              <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
+              <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
+
+              {/* Conditionally render links */}
+              <div className="flex items-center gap-4 mt-4 text-sm font-medium">
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 hover:underline flex items-center gap-1"
+                  >
+                    <FaExternalLinkAlt /> Live Preview
+                  </a>
+                )}
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 hover:underline flex items-center gap-1"
+                  >
+                    <FaGithub /> Repo Url
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
-
-        <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-        <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
-        <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
-
-        {/* Conditionally render links */}
-        <div className="flex items-center gap-4 mt-4 text-sm font-medium">
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:underline flex items-center gap-1"
-            >
-              <FaExternalLinkAlt /> Live Preview
-            </a>
-          )}
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:underline flex items-center gap-1"
-            >
-              <FaGithub /> Repo Url
-            </a>
-          )}
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
-<footer className="flex justify-between items-start px-10 py-10 gap-20">
+      </section>
+      <footer className="flex flex-col md:flex-row justify-between items-start px-6 md:px-10 py-10 gap-10 md:gap-20 bg-black">
   {/* Left Side */}
-  <div className="text-white w-1/2">
+  <div className="text-white w-full md:w-1/2 space-y-6">
     <div>
       <h1 className="font-mono text-3xl">Get In Touch</h1>
       <br />
       <p>
-        if you have any inquiries, please feel free to reach out. 
-        You can contact me via email at 
-        niikkunjmiglani@gmail.com
+        If you have any inquiries, please feel free to reach out. <br />
+        You can contact me via email at <br />
+        <a href="mailto:niikkunjmiglani@gmail.com" className="underline">niikkunjmiglani@gmail.com</a>
       </p>
     </div>
-    <br />
+
     <div className="flex flex-col gap-2">
-  <h1 className="font-mono text-xl">Follow me</h1>
-  <div className="flex gap-3 mt-2">
-    <a
-      href="https://github.com/Nikunjmiglani"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-    >
-      <FaGithub size={20} />
-    </a>
-    <a
-      href="https://www.linkedin.com/in/nikunjmiglani/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-    >
-      <FaLinkedinIn size={20} />
-    </a>
-    <a
-      href="https://www.instagram.com/niikkunj_/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-    >
-      <FaInstagram size={20} />
-    </a>
-   
-   
-    <a
-      href="https://x.com/NikunjMiglani28"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-    >
-      <FaXTwitter size={20} />
-    </a>
-    <a
-      href="https://coff.ee/nikunjmiglani"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-    >
-      <SiBuymeacoffee size={20} />
-    </a>
-  </div>
-</div>
+      <h1 className="font-mono text-xl">Follow me</h1>
+      <div className="flex flex-wrap gap-3 mt-2">
+        <a
+          href="https://github.com/Nikunjmiglani"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+        >
+          <FaGithub size={20} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/nikunjmiglani/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+        >
+          <FaLinkedinIn size={20} />
+        </a>
+        <a
+          href="https://www.instagram.com/niikkunj_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+        >
+          <FaInstagram size={20} />
+        </a>
+        <a
+          href="https://x.com/NikunjMiglani28"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+        >
+          <FaXTwitter size={20} />
+        </a>
+        <a
+          href="https://coff.ee/nikunjmiglani"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+        >
+          <SiBuymeacoffee size={20} />
+        </a>
+      </div>
+    </div>
 
-<div className="mt-15">
-© 2025 Developed with 🩵 by Nikunj
-</div>
-
-  </div>
-  
-
-  
-  <div className="text-white w-1/2 flex justify-end">
-   <form
-  className="w-full max-w-xl space-y-4"
-  action="https://formspree.io/f/mgvynjpo"
-  method="POST"
->
-  {/* Full Name and Phone No */}
-  <div className="flex flex-col md:flex-row gap-4">
-    <input
-      type="text"
-      name="fullName"
-      placeholder="Full Name"
-      required
-      className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-    />
-    <input
-      type="text"
-      name="phone"
-      placeholder="Phone No"
-      className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-    />
+    <div className="pt-4 text-sm">
+      © 2025 Developed with 🩵 by Nikunj
+    </div>
   </div>
 
-  {/* Email */}
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
-    required
-    className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-  />
+  {/* Right Side - Contact Form */}
+  <div className="text-white w-full md:w-1/2">
+    <form
+      className="w-full space-y-4"
+      action="https://formspree.io/f/mgvynjpo"
+      method="POST"
+    >
+      {/* Full Name and Phone No */}
+      <div className="flex flex-col md:flex-row gap-4">
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Full Name"
+          required
+          className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone No"
+          className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+        />
+      </div>
 
-  {/* Message */}
-  <textarea
-    name="message"
-    placeholder="Message"
-    rows="5"
-    required
-    className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-  ></textarea>
+      {/* Email */}
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+      />
 
-  {/* Hidden spam protection field */}
-  <input type="text" name="_gotcha" style={{ display: "none" }} />
+      {/* Message */}
+      <textarea
+        name="message"
+        placeholder="Message"
+        rows="5"
+        required
+        className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+      ></textarea>
 
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="w-full bg-white text-black font-medium py-3 rounded-md hover:bg-gray-200 transition-colors"
-  >
-    Submit
-  </button>
-</form>
+      {/* Hidden spam protection field */}
+      <input type="text" name="_gotcha" style={{ display: "none" }} />
 
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full bg-white text-black font-medium py-3 rounded-md hover:bg-gray-200 transition-colors"
+      >
+        Submit
+      </button>
+    </form>
   </div>
 </footer>
+
 
 
 
