@@ -43,12 +43,12 @@ const Navbar = () => {
             <a href="https://www.linkedin.com/in/nikunjmiglani/" target="_blank" rel="noopener noreferrer">
               Linkedin
             </a>
-          </li>
+          </li>/
           <li className="cursor-pointer hover:scale-110 transition-transform duration-200 opacity-65">
             <a href="https://github.com/Nikunjmiglani" target="_blank" rel="noopener noreferrer">
               Github
             </a>
-          </li>
+          </li>/
           <li className="cursor-pointer hover:scale-110 transition-transform duration-200 opacity-65">
             <a href="https://x.com/NikunjMiglani28" target="_blank" rel="noopener noreferrer">
               X
