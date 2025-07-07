@@ -1,5 +1,14 @@
 'use client';
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import {
+  
+  FaLinkedinIn,
+  FaInstagram,
+  FaDiscord,
+  FaYoutube,
+  FaXTwitter,
+} from "react-icons/fa6";
+import { SiBuymeacoffee } from "react-icons/si"
 
 const projects = [
   {
@@ -152,7 +161,7 @@ export default function Home() {
           <div>
             <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
             <p className="opacity-70">
-              I&apos;ve already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning—whether it&apos;s building web apps, securing systems, or experimenting with tech stacks.
+              I&apos;ve already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning.
             </p>
             <br />
             <p className="opacity-70">
@@ -280,6 +289,132 @@ export default function Home() {
     ))}
   </div>
 </section>
+<footer className="flex justify-between items-start px-10 py-10 gap-20">
+  {/* Left Side */}
+  <div className="text-white w-1/2">
+    <div>
+      <h1 className="font-mono text-3xl">Get In Touch</h1>
+      <br />
+      <p>
+        if you have any inquiries, please feel free to reach out. 
+        You can contact me via email at 
+        niikkunjmiglani@gmail.com
+      </p>
+    </div>
+    <br />
+    <div className="flex flex-col gap-2">
+  <h1 className="font-mono text-xl">Follow me</h1>
+  <div className="flex gap-3 mt-2">
+    <a
+      href="https://github.com/Nikunjmiglani"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+    >
+      <FaGithub size={20} />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/nikunjmiglani/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+    >
+      <FaLinkedinIn size={20} />
+    </a>
+    <a
+      href="https://www.instagram.com/niikkunj_/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+    >
+      <FaInstagram size={20} />
+    </a>
+   
+   
+    <a
+      href="https://x.com/NikunjMiglani28"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+    >
+      <FaXTwitter size={20} />
+    </a>
+    <a
+      href="https://coff.ee/nikunjmiglani"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
+    >
+      <SiBuymeacoffee size={20} />
+    </a>
+  </div>
+</div>
+
+<div className="mt-15">
+© 2025 Developed with 🩵 by Nikunj
+</div>
+
+  </div>
+  
+
+  
+  <div className="text-white w-1/2 flex justify-end">
+   <form
+  className="w-full max-w-xl space-y-4"
+  action="https://formspree.io/f/mgvynjpo"
+  method="POST"
+>
+  {/* Full Name and Phone No */}
+  <div className="flex flex-col md:flex-row gap-4">
+    <input
+      type="text"
+      name="fullName"
+      placeholder="Full Name"
+      required
+      className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+    />
+    <input
+      type="text"
+      name="phone"
+      placeholder="Phone No"
+      className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+    />
+  </div>
+
+  {/* Email */}
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    required
+    className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+  />
+
+  {/* Message */}
+  <textarea
+    name="message"
+    placeholder="Message"
+    rows="5"
+    required
+    className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+  ></textarea>
+
+  {/* Hidden spam protection field */}
+  <input type="text" name="_gotcha" style={{ display: "none" }} />
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    className="w-full bg-white text-black font-medium py-3 rounded-md hover:bg-gray-200 transition-colors"
+  >
+    Submit
+  </button>
+</form>
+
+  </div>
+</footer>
+
+
 
     </main>
   );
