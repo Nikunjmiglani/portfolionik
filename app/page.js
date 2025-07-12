@@ -20,13 +20,14 @@ const projects = [
 
   },
   {
-    title: "Kaira Landing page",
-    tech: "Next.js / Tailwind CSS ",
-    desc: "Responsive E-comm Landing Page.",
-    img: "/kaira.png",
-    live: "https://landing-page-ecomm.vercel.app/",
-    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
+    title: "Whabitr",
+    tech: "Next.js / Tailwind CSS / MongoDB / Express.js ",
+    desc: "A Daily Habit Tracker with Streak and calender view upto 90 days, build using next.js, tailwind css and Mongo db",
+    img: "/SS.png",
+    live: "https://whabitr.vercel.app/",
+    repo: "https://github.com/Nikunjmiglani/habiter",
   },
+  
   {
     title: "Portfolio",
     tech: "Next.js / Framer / Tailwind CSS",
@@ -36,12 +37,12 @@ const projects = [
     repo: "https://github.com/Nikunjmiglani/portfolionik.git",
   },
   {
-    title: "Get Me A Chai",
-    tech: "Next.js / MongoDb /Tailwind CSS / Sanity CMS",
-    desc: "Crowd Funding Application made as a part of Course with some personal modifications.",
-    img: "/getmeachai.png",
-
-    repo: "https://github.com/Nikunjmiglani/Get-Me-A-Chai.git",
+    title: "Kaira Landing page",
+    tech: "Next.js / Tailwind CSS ",
+    desc: "Responsive E-comm Landing Page.",
+    img: "/kaira.png",
+    live: "https://landing-page-ecomm.vercel.app/",
+    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
   },
 ];
 
