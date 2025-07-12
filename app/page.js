@@ -33,7 +33,7 @@ const projects = [
     tech: "Next.js / Framer / Tailwind CSS",
     desc: "Personal portfolio made using Next.js & Tailwind CSS.",
     img: "/pp.png",
-    live: "https://nikcodes.vercel.app/",
+    live: "https://nikunj.space/",
     repo: "https://github.com/Nikunjmiglani/portfolionik.git",
   },
   {
