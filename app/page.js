@@ -24,7 +24,7 @@ const projects = [
     tech: "Next.js / Tailwind CSS / MongoDB / Express.js ",
     desc: "A Daily Habit Tracker with Streak and calender view upto 90 days, build using next.js, tailwind css and Mongo db",
     img: "/SS.png",
-    live: "https://whabitr.vercel.app/",
+    live: "https://whabitr.online/",
     repo: "https://github.com/Nikunjmiglani/habiter",
   },
   
