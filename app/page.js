@@ -21,7 +21,7 @@ const projects = [
   },
   {
     title: "Whabitr",
-    tech: "Next.js / Tailwind CSS / MongoDB / Express.js ",
+    tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
     desc: "A Daily Habit Tracker with Streak and calender view upto 90 days, build using next.js, tailwind css and Mongo db",
     img: "/SS.png",
     live: "https://whabitr.online/",
@@ -153,14 +153,18 @@ export default function Home() {
 
         <div className="mt-5 max-w-3xl text-center px-4 space-y-4 text-gray-300">
           <div>
-            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">About Me</h2>
+            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">Who Am I?
+
+</h2>
             <p className="opacity-70">
               Hello! I&apos;m a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I&apos;m proficient in Full Stack Development and learning Cybersecurity.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What I do?</h2>
+            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What Drives Me
+
+</h2>
             <p className="opacity-70">
               I&apos;ve already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning.
             </p>
