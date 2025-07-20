@@ -179,7 +179,7 @@ export default function Home() {
 
           <div className="flex mt-5 text-white justify-center items-center gap-3">
             <a
-              href="/nik.pdf"
+              href="/NikunjResume_Final.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
