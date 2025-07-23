@@ -1,14 +1,13 @@
 'use client';
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import {
-
   FaLinkedinIn,
   FaInstagram,
   FaDiscord,
   FaYoutube,
   FaXTwitter,
 } from "react-icons/fa6";
-import { SiBuymeacoffee } from "react-icons/si"
+import { SiBuymeacoffee } from "react-icons/si";
 
 const projects = [
   {
@@ -17,17 +16,15 @@ const projects = [
     desc: "Official website made for a leading interior design firm in Delhi.",
     img: "/Miggla.png",
     live: "https://www.miggla.com/",
-
   },
   {
     title: "Whabitr",
     tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
-    desc: "A Daily Habit Tracker with Streak and calender view upto 90 days, build using next.js, tailwind css and Mongo db",
+    desc: "A Daily Habit Tracker with Streak and calendar view up to 90 days, built using Next.js, Tailwind CSS and MongoDB.",
     img: "/SS.png",
     live: "https://whabitr.online/",
     repo: "https://github.com/Nikunjmiglani/habiter",
   },
-  
   {
     title: "Portfolio",
     tech: "Next.js / Framer / Tailwind CSS",
@@ -54,14 +51,9 @@ import {
   SiCss3,
   SiC,
   SiPython,
-  SiSolidity,
   SiHtml5,
   SiPostgresql,
-  SiPrisma,
   SiNodedotjs,
-  SiFirebase,
-  SiTensorflow,
-  SiNginx,
   SiExpress,
   SiOpenai,
   SiNextdotjs,
@@ -73,9 +65,8 @@ import { motion } from "framer-motion";
 import GitHubCalendar from 'react-github-calendar';
 import { useEffect, useState } from "react";
 
-// eslint-disable-next-line react/no-unescaped-entities
-const words = ["I'm", "Nikunj"];
 
+const words = ["I’m", "Nikunj"];
 
 export default function Home() {
   const [showWords, setShowWords] = useState([]);
@@ -84,7 +75,7 @@ export default function Home() {
     words.forEach((word, index) => {
       setTimeout(() => {
         setShowWords((prev) => [...prev, word]);
-      }, index * 500); // word-by-word delay
+      }, index * 500);
     });
   }, []);
 
@@ -99,11 +90,8 @@ export default function Home() {
     { name: "Next.js", icon: <SiNextdotjs color="#363636" /> },
     { name: "HTML", icon: <SiHtml5 color="#e34c26" /> },
     { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
-
     { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
-
     { name: "AI", icon: <SiOpenai color="#03DAC6" /> },
-
     { name: "Express", icon: <SiExpress color="#fff" /> },
     { name: "MongoDB", icon: <SiMongodb color="#FF6F00" /> },
   ];
@@ -153,18 +141,14 @@ export default function Home() {
 
         <div className="mt-5 max-w-3xl text-center px-4 space-y-4 text-gray-300">
           <div>
-            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">Who Am I?
-
-</h2>
+            <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">Who Am I?</h2>
             <p className="opacity-70">
               Hello! I&apos;m a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I&apos;m proficient in Full Stack Development and learning Cybersecurity.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What Drives Me
-
-</h2>
+            <h2 className="text-xl font-mono text-white mb-1 opacity-85">What Drives Me</h2>
             <p className="opacity-70">
               I&apos;ve already delivered freelance projects and am currently diving deep into cybersecurity and development. I love combining practical experience with continuous learning.
             </p>
@@ -173,7 +157,7 @@ export default function Home() {
               When not coding, I read Finance, listen to music, or go out.
             </p>
             <p className="opacity-70">
-              I&apos;m <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.{" "}
+              I&apos;m <span className="text-white font-semibold">open to work</span>, freelance, or collaborate.
             </p>
           </div>
 
@@ -195,7 +179,6 @@ export default function Home() {
               Contact Me
             </a>
           </div>
-
         </div>
       </section>
 
@@ -267,7 +250,6 @@ export default function Home() {
               <p className="text-sm text-green-300 font-mono mt-1">{project.tech}</p>
               <p className="text-sm text-gray-400 mt-2">{project.desc}</p>
 
-              {/* Conditionally render links */}
               <div className="flex items-center gap-4 mt-4 text-sm font-medium">
                 {project.live && (
                   <a
@@ -294,131 +276,58 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       <footer className="flex flex-col md:flex-row justify-between items-start px-6 md:px-10 py-10 gap-10 md:gap-20 bg-black">
-  {/* Left Side */}
-  <div className="text-white w-full md:w-1/2 space-y-6">
-    <div>
-      <h1 className="font-mono text-3xl">Get In Touch</h1>
-      <br />
-      <p>
-        If you have any inquiries, please feel free to reach out. <br />
-        You can contact me via email at <br />
-        <a href="mailto:niikkunjmiglani@gmail.com" className="underline">niikkunjmiglani@gmail.com</a>
-      </p>
-    </div>
+        <div className="text-white w-full md:w-1/2 space-y-6">
+          <div>
+            <h1 className="font-mono text-3xl">Get In Touch</h1>
+            <br />
+            <p>
+              If you have any inquiries, please feel free to reach out. <br />
+              You can contact me via email at <br />
+              <a href="mailto:niikkunjmiglani@gmail.com" className="underline">niikkunjmiglani@gmail.com</a>
+            </p>
+          </div>
 
-    <div className="flex flex-col gap-2">
-      <h1 className="font-mono text-xl">Follow me</h1>
-      <div className="flex flex-wrap gap-3 mt-2">
-        <a
-          href="https://github.com/Nikunjmiglani"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-        >
-          <FaGithub size={20} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/nikunjmiglani/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-        >
-          <FaLinkedinIn size={20} />
-        </a>
-        <a
-          href="https://www.instagram.com/niikkunj_/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-        >
-          <FaInstagram size={20} />
-        </a>
-        <a
-          href="https://x.com/NikunjMiglani28"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-        >
-          <FaXTwitter size={20} />
-        </a>
-        <a
-          href="https://coff.ee/nikunjmiglani"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"
-        >
-          <SiBuymeacoffee size={20} />
-        </a>
-      </div>
-    </div>
+          <div className="flex flex-col gap-2">
+            <h1 className="font-mono text-xl">Follow me</h1>
+            <div className="flex flex-wrap gap-3 mt-2">
+              <a href="https://github.com/Nikunjmiglani" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"><FaGithub size={20} /></a>
+              <a href="https://www.linkedin.com/in/nikunjmiglani/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"><FaLinkedinIn size={20} /></a>
+              <a href="https://www.instagram.com/niikkunj_/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"><FaInstagram size={20} /></a>
+              <a href="https://x.com/NikunjMiglani28" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"><FaXTwitter size={20} /></a>
+              <a href="https://coff.ee/nikunjmiglani" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border border-white/20 hover:bg-white hover:text-black transition"><SiBuymeacoffee size={20} /></a>
+            </div>
+          </div>
 
-    <div className="pt-4 text-sm">
-      © 2025 Developed with 🩵 by Nikunj
-    </div>
-  </div>
+          <div className="pt-4 text-sm">
+            © 2025 Developed by Nikunj
+          </div>
+        </div>
 
-  {/* Right Side - Contact Form */}
-  <div className="text-white w-full md:w-1/2">
-    <form
-      className="w-full space-y-4"
-      action="https://formspree.io/f/mgvynjpo"
-      method="POST"
-    >
-      {/* Full Name and Phone No */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          required
-          className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-        />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone No"
-          className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-        />
-      </div>
+        <div className="text-white w-full md:w-1/2">
+          <form
+            className="w-full space-y-4"
+            action="https://formspree.io/f/mgvynjpo"
+            method="POST"
+          >
+            <div className="flex flex-col md:flex-row gap-4">
+              <input type="text" name="fullName" placeholder="Full Name" required className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white" />
+              <input type="text" name="phone" placeholder="Phone No" className="flex-1 p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white" />
+            </div>
 
-      {/* Email */}
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        required
-        className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-      />
+            <input type="email" name="email" placeholder="Email" required className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white" />
 
-      {/* Message */}
-      <textarea
-        name="message"
-        placeholder="Message"
-        rows="5"
-        required
-        className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-      ></textarea>
+            <textarea name="message" placeholder="Message" rows="5" required className="w-full p-3 rounded-md bg-[#111] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
 
-      {/* Hidden spam protection field */}
-      <input type="text" name="_gotcha" style={{ display: "none" }} />
+            <input type="text" name="_gotcha" style={{ display: "none" }} />
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        className="w-full bg-white text-black font-medium py-3 rounded-md hover:bg-gray-200 transition-colors"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
-</footer>
-
-
-
-
+            <button type="submit" className="w-full bg-white text-black font-medium py-3 rounded-md hover:bg-gray-200 transition-colors">
+              Submit
+            </button>
+          </form>
+        </div>
+      </footer>
     </main>
   );
 }
-
-
