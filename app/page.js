@@ -143,7 +143,7 @@ export default function Home() {
           <div>
             <h2 className="text-xl font-mono text-white mb-1 font-light opacity-85">Who Am I?</h2>
             <p className="opacity-70">
-              Hello! I&apos;m a developer from Delhi, India. Currently a Sophomore at SRM University. I enjoy programming and exploring technology. I&apos;m proficient in Full Stack Development and learning Cybersecurity.
+               I&apos;m a developer from Delhi, India.a 2nd Year Student at SRM University. I enjoy programming and exploring technology. I&apos;m proficient in Full Stack Development and learning Cybersecurity.
             </p>
           </div>
 
