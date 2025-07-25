@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "ArcArea",
-    tech: "Next.js / Framer / Tailwind CSS/ MongoDB/ NextAuth",
+    tech: "Next.js / Framer / Tailwind CSS / MongoDB / NextAuth / Sanity CMS",
     desc: "Marketplace for People to hire top vendors/Architects/interior designers and furniture manufacturers.",
     img: "/ArcArea.png",
     live: "https://arcarea.in/",
@@ -227,7 +227,7 @@ export default function Home() {
           📢 This graph includes only <strong>public contributions</strong>.
         </p>
         <p className="text-sm text-gray-400">
-          🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">200</span>
+          🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">300</span>
         </p>
       </section>
 
