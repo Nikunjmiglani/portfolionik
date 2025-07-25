@@ -26,12 +26,12 @@ const projects = [
     repo: "https://github.com/Nikunjmiglani/habiter",
   },
   {
-    title: "Portfolio",
-    tech: "Next.js / Framer / Tailwind CSS",
-    desc: "Personal portfolio made using Next.js & Tailwind CSS.",
-    img: "/pp.png",
-    live: "https://nikunj.space/",
-    repo: "https://github.com/Nikunjmiglani/portfolionik.git",
+    title: "ArcArea",
+    tech: "Next.js / Framer / Tailwind CSS/ MongoDB/ NextAuth",
+    desc: "Marketplace for People to hire top vendors/Architects/interior designers and furniture manufacturers.",
+    img: "/ArcArea.png",
+    live: "https://arcarea.in/",
+    repo: "https://github.com/Nikunjmiglani/Arcarea.git",
   },
   {
     title: "Kaira Landing page",
