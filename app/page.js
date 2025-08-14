@@ -10,13 +10,15 @@ import {
 import { SiBuymeacoffee } from "react-icons/si";
 
 const projects = [
-  {
-    title: "Miggla Website",
-    tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
-    desc: "Official website made for a leading interior design firm in Delhi.",
-    img: "/Miggla.png",
-    live: "https://www.miggla.com/",
-  },
+{
+  title: "FNDP-Fake News Detector",
+  tech: "Next.js / Python / Scikit-learn",
+  desc: "An AI-powered Fake News Detection Platform that uses machine learning models to classify news articles as real or fake.",
+  img: "/fndp.png",
+  live: "https://fndp-frontend.vercel.app",
+  repo: "https://github.com/Nikunjmiglani/FNDP-Frontend"
+},
+
   {
     title: "Whabitr",
     tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
@@ -33,13 +35,12 @@ const projects = [
     live: "https://arcarea.in/",
     repo: "https://github.com/Nikunjmiglani/Arcarea.git",
   },
-  {
-    title: "Kaira Landing page",
-    tech: "Next.js / Tailwind CSS ",
-    desc: "Responsive E-comm Landing Page.",
-    img: "/kaira.png",
-    live: "https://landing-page-ecomm.vercel.app/",
-    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm.git",
+ {
+    title: "Miggla Website",
+    tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
+    desc: "Official website made for a leading interior design firm in Delhi.",
+    img: "/Miggla.png",
+    live: "https://www.miggla.com/",
   },
 ];
 
