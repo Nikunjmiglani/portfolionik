@@ -177,7 +177,7 @@ export default function Home() {
               href="mailto:niikkunjmiglani@gmail.com"
               className="border border-white rounded-full px-4 py-2 cursor-pointer hover:scale-110 transition-transform duration-200 font-mono opacity-80"
             >
-              Contact Me
+              Connect!
             </a>
           </div>
         </div>
