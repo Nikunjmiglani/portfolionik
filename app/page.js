@@ -32,7 +32,7 @@ const projects = [
     tech: "Next.js / Framer / Tailwind CSS / MongoDB / NextAuth / Sanity CMS",
     desc: "Marketplace for People to hire top vendors/Architects/interior designers and furniture manufacturers.",
     img: "/ArcArea.png",
-    live: "https://arcarea.in/",
+    live: "https://arcarea.vercel.app/",
     repo: "https://github.com/Nikunjmiglani/Arcarea.git",
   },
  {
