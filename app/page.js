@@ -47,7 +47,7 @@ const projects = [
     tech: "Next.js / Python / Scikit-learn",
     desc: "An AI-powered Fake News Detection Platform that uses machine learning models to classify news articles as real or fake.",
     img: "/fndp.png",
-    live: "https://fndp-frontend.vercel.ap",
+    live: "https://fndp-frontend.vercel.app",
     repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
   },
    {
