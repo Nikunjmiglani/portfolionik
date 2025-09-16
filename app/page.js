@@ -242,9 +242,7 @@ export default function Home() {
         <p className="text-sm text-gray-400 mt-2">
           📢 This graph includes only <strong>public contributions</strong>.
         </p>
-        <p className="text-sm text-gray-400">
-          🔒 Total contributions in the last year (public + private): <span className="text-white font-semibold">300</span>
-        </p>
+       
       </section>
 
       <section className="py-16 px-6">
