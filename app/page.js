@@ -40,7 +40,7 @@ const projects = [
     tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
     desc: "Website for a interior design firm.",
     img: "/Miggla.png",
-    live: "https://www.arckey.vercel.app/",
+    live: "https://miggla.vercel.app/",
   },
    {
     title: "FNDP - Fake News Detector Project",
