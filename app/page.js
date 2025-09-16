@@ -11,12 +11,12 @@ import { SiBuymeacoffee } from "react-icons/si";
 
 const projects = [
 {
-  title: "FNDP-Fake News Detector",
-  tech: "Next.js / Python / Scikit-learn",
-  desc: "An AI-powered Fake News Detection Platform that uses machine learning models to classify news articles as real or fake.",
-  img: "/fndp.png",
-  live: "https://fndp-frontend.vercel.app",
-  repo: "https://github.com/Nikunjmiglani/FNDP-Frontend"
+  title: "AyuTrace",
+  tech: "Next.js / Tailwind / Solidity / Ether.js / NextAuth / MongoDB",
+  desc: "Blockchain-powered traceability system ensuring secure, transparent, and tamper-proof tracking of products from origin to end-user.",
+  img: "/AyuTrace.png",
+  live: "https://ethicons.vercel.app",
+  repo: "https://github.com/Nikunjmiglani/ethicons"
 },
 
   {
@@ -38,9 +38,24 @@ const projects = [
  {
     title: "Miggla Website",
     tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
-    desc: "Official website made for a leading interior design firm in Delhi.",
+    desc: "Website for a interior design firm.",
     img: "/Miggla.png",
-    live: "https://www.miggla.com/",
+    live: "https://www.miggla.vercel.app/",
+  },
+   {
+    title: "FNDP - Fake News Detector Project",
+    tech: "Next.js / Python / Scikit-learn",
+    desc: "An AI-powered Fake News Detection Platform that uses machine learning models to classify news articles as real or fake.",
+    img: "/fndp.png",
+    live: "https://fndp-frontend.vercel.ap",
+    repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
+  },
+   {
+    title: "Kaira - Landing Page",
+    tech: "Next.js / Framer / Tailwind CSS ",
+    desc: "A modern e-commerce landing page designed for seamless shopping experiences with clean UI.",
+    img: "/kaira.png",
+    live: "https://landing-page-ecomm.vercel.app/",
   },
 ];
 
