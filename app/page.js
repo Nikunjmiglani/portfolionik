@@ -250,7 +250,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {projects.map((project, index) => (
-            <div key={index} className="bg-[#0f1117] p-4 rounded-lg shadow-lg">
+            <div key={index} className=" p-4 rounded-lg shadow-lg">
               <div className="relative w-full h-50 md:h-52 mb-4 overflow-hidden rounded-lg">
                 <Image
                   src={project.img}
@@ -291,7 +291,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="flex flex-col md:flex-row justify-between items-start px-6 md:px-10 py-10 gap-10 md:gap-20 bg-black">
+      <footer className="flex flex-col md:flex-row justify-between items-start px-6 md:px-10 py-10 gap-10 md:gap-20">
         <div className="text-white w-full md:w-1/2 space-y-6">
           <div>
             <h1 className="font-mono text-3xl">Get In Touch</h1>
