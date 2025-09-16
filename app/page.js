@@ -56,6 +56,7 @@ const projects = [
     desc: "A modern e-commerce landing page designed for seamless shopping experiences with clean UI.",
     img: "/kaira.png",
     live: "https://landing-page-ecomm.vercel.app/",
+    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm",
   },
 ];
 
