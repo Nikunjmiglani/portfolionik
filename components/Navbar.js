@@ -9,18 +9,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/nikunjmiglani/",
-    },
-    {
-      name: "GitHub",
-      href: "https://github.com/Nikunjmiglani",
-    },
-    {
-      name: "X",
-      href: "https://x.com/NikunjMiglani28",
-    },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/nikunjmiglani/" },
+    { name: "GitHub", href: "https://github.com/Nikunjmiglani" },
+    { name: "X", href: "https://x.com/NikunjMiglani28" },
   ];
 
   return (
@@ -85,12 +76,12 @@ export default function Navbar() {
         className="fixed top-0 right-0 h-full w-64 z-50 md:hidden text-white"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 🔵 Old Purple Background (first version) */}
+        {/* Same Midnight Ember Gradient as layout */}
         <div
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
+              "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
           }}
         />
 

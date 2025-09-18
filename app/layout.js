@@ -26,12 +26,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="min-h-screen">
         <div className="min-h-screen w-full relative">
-          {/* First Background (Black → Purple) */}
+          {/* Midnight Ember Background */}
           <div
             className="absolute inset-0 z-0"
             style={{
               background:
-                "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
+                "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
             }}
           />
 
