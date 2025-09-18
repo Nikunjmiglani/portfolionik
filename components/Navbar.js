@@ -8,7 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-black text-white px-6 py-3">
+    <nav className=" text-white px-6 py-3">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="cursor-pointer opacity-80 hover:scale-110 transition-transform duration-200">
