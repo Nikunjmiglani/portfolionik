@@ -1,87 +1,112 @@
-'use client';
-import React, { useState } from 'react';
-import { Mail } from 'lucide-react';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+"use client";
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/nikunjmiglani/",
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/Nikunjmiglani",
+    },
+    {
+      name: "X",
+      href: "https://x.com/NikunjMiglani28",
+    },
+  ];
 
   return (
-    <nav className=" text-white px-6 py-3">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <div className="cursor-pointer opacity-80 hover:scale-110 transition-transform duration-200">
-          <Link href="/">
+    <>
+      {/* Main Navbar */}
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl"
+      >
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3 rounded-full shadow-2xl bg-gray-900/30 backdrop-blur-lg border border-white/10">
+          {/* Logo */}
+          <Link href="/" className="flex items-center flex-shrink-0">
             <img
               src="/Nlogo.png"
               width={45}
-              className="mb-1 border border-white rounded-full"
               alt="Logo"
+              className="border border-white rounded-full hover:scale-110 transition-transform duration-300"
             />
           </Link>
-        </div>
 
-        {/* Hamburger Icon for mobile */}
-        <div className="md:hidden">
-          {menuOpen ? (
-            <X
-              className="w-6 h-6 cursor-pointer"
-              onClick={() => setMenuOpen(false)}
-            />
-          ) : (
-            <Menu
-              className="w-6 h-6 cursor-pointer"
-              onClick={() => setMenuOpen(true)}
-            />
-          )}
-        </div>
-
-        {/* Desktop Links */}
-        <ul className="hidden md:flex gap-6 font-light opacity-70 items-center">
-          <li className="cursor-pointer hover:scale-110 transition-transform duration-200 opacity-65">
-            <a href="https://www.linkedin.com/in/nikunjmiglani/" target="_blank" rel="noopener noreferrer">
-              Linkedin
-            </a>
-          </li>/
-          <li className="cursor-pointer hover:scale-110 transition-transform duration-200 opacity-65">
-            <a href="https://github.com/Nikunjmiglani" target="_blank" rel="noopener noreferrer">
-              Github
-            </a>
-          </li>/
-          <li className="cursor-pointer hover:scale-110 transition-transform duration-200 opacity-65">
-            <a href="https://x.com/NikunjMiglani28" target="_blank" rel="noopener noreferrer">
-              X
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div className="md:hidden mt-4">
-          <ul className="flex flex-col items-center gap-4 text-white font-light opacity-80">
-            <li>
-              <a href="https://www.linkedin.com/in/nikunjmiglani/" target="_blank" rel="noopener noreferrer">
-                Linkedin
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/Nikunjmiglani" target="_blank" rel="noopener noreferrer">
-                Github
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/NikunjMiglani28" target="_blank" rel="noopener noreferrer">
-                X
-              </a>
-            </li>
+          {/* Desktop Nav */}
+          <ul className="hidden md:flex items-center gap-1 bg-black/20 p-1 py-2 rounded-full">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-1 text-sm font-medium rounded-full text-gray-300 hover:bg-white/10 hover:text-white transition-colors duration-300"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
+
+          {/* Mobile Menu Trigger */}
+          <button
+            className="md:hidden text-white p-1"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu className="w-7 h-7" />
+          </button>
         </div>
-      )}
-    </nav>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 backdrop-blur-sm md:hidden transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Mobile Menu Panel */}
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: isOpen ? 0 : "100%" }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="fixed top-0 right-0 h-full w-64 bg-white p-8 z-50 md:hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-6 right-6 text-gray-800"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <ul className="flex flex-col gap-6 mt-5 text-center">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="text-xl font-medium sm:text-xl text-green-600 transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    </>
   );
-};
-
-export default Navbar;
-
+}
