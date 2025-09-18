@@ -78,46 +78,45 @@ export default function Navbar() {
       />
 
       {/* Mobile Menu Panel */}
-<motion.div
-  initial={{ x: "100%" }}
-  animate={{ x: isOpen ? 0 : "100%" }}
-  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-  className="fixed top-0 right-0 h-full w-64 z-50 md:hidden text-white"
-  onClick={(e) => e.stopPropagation()}
->
-  {/* Gradient Background */}
-  <div
-    className="absolute inset-0 -z-10"
-    style={{
-      background:
-        "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
-    }}
-  />
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: isOpen ? 0 : "100%" }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="fixed top-0 right-0 h-full w-64 z-50 md:hidden text-white"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Midnight Ember Gradient Background */}
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
+          }}
+        />
 
-  <button
-    onClick={() => setIsOpen(false)}
-    className="absolute top-6 right-6 text-white hover:text-gray-300"
-  >
-    <X className="w-6 h-6" />
-  </button>
-
-  <ul className="flex flex-col gap-6 mt-16 text-center">
-    {navLinks.map((link) => (
-      <li key={link.name}>
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
           onClick={() => setIsOpen(false)}
-          className="text-xl font-medium sm:text-xl text-white transition-colors"
+          className="absolute top-6 right-6 text-white hover:text-gray-300"
         >
-          {link.name}
-        </a>
-      </li>
-    ))}
-  </ul>
-</motion.div>
+          <X className="w-6 h-6" />
+        </button>
 
+        <ul className="flex flex-col gap-6 mt-16 text-center">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="text-xl font-medium sm:text-xl text-white hover:text-green-400 transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
     </>
   );
 }

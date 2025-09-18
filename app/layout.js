@@ -26,12 +26,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="min-h-screen">
         <div className="relative min-h-screen w-full bg-cover bg-center bg-fixed bg-no-repeat">
-          {/* Fixed Radial Gradient Background */}
+          {/* Fixed Midnight Ember Background */}
           <div
             className="fixed inset-0 -z-10 w-full h-full"
             style={{
               background:
-                "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
+                "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
             }}
           />
 
