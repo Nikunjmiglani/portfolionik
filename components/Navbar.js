@@ -109,7 +109,7 @@ export default function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setIsOpen(false)}
-          className="text-xl font-medium sm:text-xl text-green-400 hover:text-green-300 transition-colors"
+          className="text-xl font-medium sm:text-xl text-white transition-colors"
         >
           {link.name}
         </a>
