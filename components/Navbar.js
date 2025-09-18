@@ -85,12 +85,12 @@ export default function Navbar() {
         className="fixed top-0 right-0 h-full w-64 z-50 md:hidden text-white"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Midnight Ember Gradient Background */}
+        {/* Dark Horizon Glow Gradient Background */}
         <div
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
+              "radial-gradient(125% 125% at 50% 90%, #000000 40%, #0d1a36 100%)",
           }}
         />
 
