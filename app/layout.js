@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen">
-        <div className="relative min-h-screen w-full bg-cover bg-center bg-fixed bg-no-repeat">
-          {/* Fixed Midnight Ember Background */}
+        <div className="min-h-screen w-full relative">
+          {/* Dark Horizon Glow */}
           <div
-            className="fixed inset-0 -z-10 w-full h-full"
+            className="absolute inset-0 z-0"
             style={{
               background:
-                "radial-gradient(ellipse at center, #3d2914 0%, #2a1810 30%, #1a0f0a 60%, #0d0806 100%)",
+                "radial-gradient(125% 125% at 50% 90%, #000000 40%, #0d1a36 100%)",
             }}
           />
 
