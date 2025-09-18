@@ -78,35 +78,46 @@ export default function Navbar() {
       />
 
       {/* Mobile Menu Panel */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: isOpen ? 0 : "100%" }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 right-0 h-full w-64 bg-white p-8 z-50 md:hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
+<motion.div
+  initial={{ x: "100%" }}
+  animate={{ x: isOpen ? 0 : "100%" }}
+  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+  className="fixed top-0 right-0 h-full w-64 z-50 md:hidden text-white"
+  onClick={(e) => e.stopPropagation()}
+>
+  {/* Gradient Background */}
+  <div
+    className="absolute inset-0 -z-10"
+    style={{
+      background:
+        "radial-gradient(125% 125% at 50% 100%, #000000 40%, #350136 100%)",
+    }}
+  />
+
+  <button
+    onClick={() => setIsOpen(false)}
+    className="absolute top-6 right-6 text-white hover:text-gray-300"
+  >
+    <X className="w-6 h-6" />
+  </button>
+
+  <ul className="flex flex-col gap-6 mt-16 text-center">
+    {navLinks.map((link) => (
+      <li key={link.name}>
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 text-gray-800"
+          className="text-xl font-medium sm:text-xl text-green-400 hover:text-green-300 transition-colors"
         >
-          <X className="w-6 h-6" />
-        </button>
-        <ul className="flex flex-col gap-6 mt-5 text-center">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="text-xl font-medium sm:text-xl text-green-600 transition-colors"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
+          {link.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</motion.div>
+
     </>
   );
 }
