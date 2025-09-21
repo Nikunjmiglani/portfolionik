@@ -115,10 +115,10 @@ export default function Home() {
 
   return (
     <main className="text-white">
-      <div className="border-t border-gray-800 mx-6 mt-20 sm:mx-20"></div>
+      <div className="border-t border-gray-800 mx-6 sm:mx-20"></div>
 
       <section className="flex flex-col mt-5 items-center gap-2">
-        <div className="items-center">
+        <div className="items-center mt-20">
           <Image
             src="/Nikunj.jpg"
             width={70}
