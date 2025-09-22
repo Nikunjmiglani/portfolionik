@@ -61,20 +61,23 @@ const projects = [
 ];
 
 import {
+  SiNextdotjs,
   SiReact,
-  SiTailwindcss,
-  SiBootstrap,
-  SiCplusplus,
-  SiCss3,
-  SiC,
-  SiPython,
-  SiHtml5,
-  SiPostgresql,
   SiNodedotjs,
   SiExpress,
-  SiOpenai,
-  SiNextdotjs,
   SiMongodb,
+  SiPython,
+  SiC,
+  SiCplusplus,
+  SiJava,
+  SiGit,
+  SiLinux,
+  SiTailwindcss,
+  SiTypescript,
+  SiJavascript,
+  SiKali,
+  SiHtml5,
+  SiCss3,
 } from "react-icons/si";
 
 import Image from 'next/image';
@@ -96,21 +99,24 @@ export default function Home() {
     });
   }, []);
 
-  const tools = [
+   const tools = [
+    { name: "Next.js", icon: <SiNextdotjs color="#fff" /> },
     { name: "React.js", icon: <SiReact color="#61DAFB" /> },
-    { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
-    { name: "Bootstrap", icon: <SiBootstrap color="#7952B3" /> },
-    { name: "C++", icon: <SiCplusplus color="#00599C" /> },
-    { name: "CSS", icon: <SiCss3 color="#264de4" /> },
-    { name: "C", icon: <SiC color="#A8B9CC" /> },
-    { name: "Python", icon: <SiPython color="#FFD43B" /> },
-    { name: "Next.js", icon: <SiNextdotjs color="#363636" /> },
-    { name: "HTML", icon: <SiHtml5 color="#e34c26" /> },
-    { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
     { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
-    { name: "AI", icon: <SiOpenai color="#03DAC6" /> },
     { name: "Express", icon: <SiExpress color="#fff" /> },
-    { name: "MongoDB", icon: <SiMongodb color="#FF6F00" /> },
+    { name: "MongoDB", icon: <SiMongodb color="#4DB33D" /> },
+    { name: "Python", icon: <SiPython color="#FFD43B" /> },
+    { name: "C", icon: <SiC color="#00599C" /> },
+    { name: "C++", icon: <SiCplusplus color="#00599C" /> },
+    { name: "Java", icon: <SiJava color="#f89820" /> },
+    { name: "Git", icon: <SiGit color="#F05032" /> },
+    { name: "Linux", icon: <SiLinux color="#FCC624" /> },
+    { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
+    { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
+    { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
+    { name: "Kali Linux", icon: <SiKali color="#268BEE" /> },
+    { name: "HTML5", icon: <SiHtml5 color="#e34c26" /> },
+    { name: "CSS3", icon: <SiCss3 color="#264de4" /> },
   ];
 
   return (
