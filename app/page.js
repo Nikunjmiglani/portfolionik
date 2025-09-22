@@ -1,5 +1,6 @@
 'use client';
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+
+import { FaExternalLinkAlt, FaGithub, FaJava } from "react-icons/fa";
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -10,15 +11,14 @@ import {
 import { SiBuymeacoffee } from "react-icons/si";
 
 const projects = [
-{
-  title: "AyuTrace",
-  tech: "Next.js / Tailwind / Solidity / Ether.js / NextAuth / MongoDB",
-  desc: "Blockchain-powered traceability system ensuring secure, transparent, and tamper-proof tracking of products from origin to end-user.",
-  img: "/AyuTrace.png",
-  live: "https://ethicons.vercel.app",
-  repo: "https://github.com/Nikunjmiglani/ethicons"
-},
-
+  {
+    title: "AyuTrace",
+    tech: "Next.js / Tailwind / Solidity / Ether.js / NextAuth / MongoDB",
+    desc: "Blockchain-powered traceability system ensuring secure, transparent, and tamper-proof tracking of products from origin to end-user.",
+    img: "/AyuTrace.png",
+    live: "https://ethicons.vercel.app",
+    repo: "https://github.com/Nikunjmiglani/ethicons"
+  },
   {
     title: "Whabitr",
     tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
@@ -35,14 +35,14 @@ const projects = [
     live: "https://arcarea.vercel.app/",
     repo: "https://github.com/Nikunjmiglani/Arcarea.git",
   },
- {
+  {
     title: "Miggla Website",
     tech: "Next.js / Sanity CMS / Tailwind CSS / Framer",
     desc: "Website for a interior design firm.",
     img: "/Miggla.png",
     live: "https://miggla.vercel.app/",
   },
-   {
+  {
     title: "FNDP - Fake News Detector Project",
     tech: "Next.js / Python / Scikit-learn",
     desc: "An AI-powered Fake News Detection Platform that uses machine learning models to classify news articles as real or fake.",
@@ -50,7 +50,7 @@ const projects = [
     live: "https://fndp-frontend.vercel.app",
     repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
   },
-   {
+  {
     title: "Kaira - Landing Page",
     tech: "Next.js / Framer / Tailwind CSS ",
     desc: "A modern e-commerce landing page designed for seamless shopping experiences with clean UI.",
@@ -69,22 +69,21 @@ import {
   SiPython,
   SiC,
   SiCplusplus,
-  SiJava,
   SiGit,
   SiLinux,
   SiTailwindcss,
   SiTypescript,
   SiJavascript,
-  SiKali,
   SiHtml5,
   SiCss3,
+  SiPostgresql,
+  SiSolidity,
 } from "react-icons/si";
 
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import GitHubCalendar from 'react-github-calendar';
 import { useEffect, useState } from "react";
-
 
 const words = ["I’m", "Nikunj"];
 
@@ -99,25 +98,27 @@ export default function Home() {
     });
   }, []);
 
-   const tools = [
+  const tools = [
     { name: "Next.js", icon: <SiNextdotjs color="#fff" /> },
     { name: "React.js", icon: <SiReact color="#61DAFB" /> },
     { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
     { name: "Express", icon: <SiExpress color="#fff" /> },
     { name: "MongoDB", icon: <SiMongodb color="#4DB33D" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
     { name: "Python", icon: <SiPython color="#FFD43B" /> },
     { name: "C", icon: <SiC color="#00599C" /> },
     { name: "C++", icon: <SiCplusplus color="#00599C" /> },
-    { name: "Java", icon: <SiJava color="#f89820" /> },
+    { name: "Java", icon: <FaJava color="#f89820" /> },
     { name: "Git", icon: <SiGit color="#F05032" /> },
     { name: "Linux", icon: <SiLinux color="#FCC624" /> },
     { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
     { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
     { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
-    { name: "Kali Linux", icon: <SiKali color="#268BEE" /> },
     { name: "HTML5", icon: <SiHtml5 color="#e34c26" /> },
     { name: "CSS3", icon: <SiCss3 color="#264de4" /> },
+    { name: "Solidity", icon: <SiSolidity color="#363636" /> },
   ];
+
 
   return (
     <main className="text-white">
