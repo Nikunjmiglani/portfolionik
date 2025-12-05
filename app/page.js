@@ -98,25 +98,40 @@ export default function Home() {
   }, []);
 
   const tools = [
-    { name: "Next.js", icon: <SiNextdotjs color="#fff" /> },
-    { name: "React.js", icon: <SiReact color="#61DAFB" /> },
-    { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
-    { name: "Express", icon: <SiExpress color="#fff" /> },
-    { name: "MongoDB", icon: <SiMongodb color="#4DB33D" /> },
-    { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
-    { name: "Python", icon: <SiPython color="#FFD43B" /> },
-    { name: "C", icon: <SiC color="#00599C" /> },
-    { name: "C++", icon: <SiCplusplus color="#00599C" /> },
-    { name: "Java", icon: <FaJava color="#f89820" /> },
-    { name: "Git", icon: <SiGit color="#F05032" /> },
-    { name: "Linux", icon: <SiLinux color="#FCC624" /> },
-    { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
-    { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
-    { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
-    { name: "HTML5", icon: <SiHtml5 color="#e34c26" /> },
-    { name: "CSS3", icon: <SiCss3 color="#264de4" /> },
-    { name: "Solidity", icon: <SiSolidity color="#363636" /> },
-  ];
+  // Frontend
+  { name: "Next.js", icon: <SiNextdotjs color="#fff" /> },
+  { name: "React.js", icon: <SiReact color="#61DAFB" /> },
+  { name: "TailwindCSS", icon: <SiTailwindcss color="#38B2AC" /> },
+  { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
+  { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
+  { name: "Framer Motion", icon: <SiReact color="#61DAFB" /> },
+
+  // Backend
+  { name: "FastAPI", icon: <SiPython color="#FFD43B" /> },
+  { name: "Node.js", icon: <SiNodedotjs color="#339933" /> },
+  { name: "Express.js", icon: <SiExpress color="#fff" /> },
+
+  // Database & Headless CMS
+  { name: "MongoDB", icon: <SiMongodb color="#4DB33D" /> },
+  { name: "Sanity CMS", icon: <SiReact color="#fff" /> },
+  { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
+
+  // Cybersecurity & OS
+  { name: "Linux / Kali", icon: <SiLinux color="#FCC624" /> },
+
+  // Machine Learning & AI
+  { name: "Python", icon: <SiPython color="#FFD43B" /> },
+  { name: "Scikit-learn", icon: <SiPython color="#fff" /> },
+  { name: "Groq AI", icon: <SiReact color="#fff" /> },
+
+  // Blockchain
+  { name: "Solidity", icon: <SiSolidity color="#363636" /> },
+  { name: "Ethers.js", icon: <SiReact color="#fff" /> },
+
+  // DevOps
+  { name: "Git", icon: <SiGit color="#F05032" /> },
+];
+
 
 
   return (
