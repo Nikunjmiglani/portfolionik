@@ -20,12 +20,11 @@ const projects = [
     repo: "https://github.com/Nikunjmiglani/ethicons"
   },
   {
-    title: "Whabitr",
-    tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
-    desc: "A Daily Habit Tracker with Streak and calendar view up to 90 days, built using Next.js, Tailwind CSS and MongoDB.",
-    img: "/SS.png",
-    live: "https://whabitr.online/",
-    repo: "https://github.com/Nikunjmiglani/habiter",
+    title: "VulnScan",
+    tech: "Next.js / Tailwind CSS / FastAPI / Python / MongoDb / Groq ",
+    desc: "Automated vulnerability scanning system with AI-powered reporting.",
+    img: "/vuln_scan.jpg",
+    repo: "https://github.com/Nikunjmiglani/advanced-vulnerability-scanner",
   },
   {
     title: "ArcArea",
@@ -51,12 +50,12 @@ const projects = [
     repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
   },
   {
-    title: "Kaira - Landing Page",
-    tech: "Next.js / Framer / Tailwind CSS ",
-    desc: "A modern e-commerce landing page designed for seamless shopping experiences with clean UI.",
-    img: "/kaira.png",
-    live: "https://landing-page-ecomm.vercel.app/",
-    repo: "https://github.com/Nikunjmiglani/Landing-page-Ecomm",
+    title: "Whabitr",
+    tech: "Next.js / Tailwind CSS / MongoDB / Express.js / NextAuth ",
+    desc: "A Daily Habit Tracker with Streak and calendar view up to 90 days, built using Next.js, Tailwind CSS and MongoDB.",
+    img: "/SS.png",
+    live: "https://whabitr.online/",
+    repo: "https://github.com/Nikunjmiglani/habiter",
   },
 ];
 
