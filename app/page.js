@@ -279,7 +279,7 @@ export default function Home() {
             ))}
             <a href="/Nikunjresume.pdf" download
               className="text-[11px] tracking-[0.18em] uppercase font-mono px-4 py-2 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white hover:border-stone-800 transition-all">
-              Résumé ↗
+              Resume ↗
             </a>
           </div>
         </nav>
