@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const navLinks = [
   { name: "About",   href: "#about",    id: "about" },
@@ -15,89 +14,272 @@ const navLinks = [
 const socialLinks = [
   { name: "LinkedIn",   href: "https://www.linkedin.com/in/nikunjmiglani/" },
   { name: "GitHub",     href: "https://github.com/Nikunjmiglani" },
-  { name: "X / Twitter", href: "https://x.com/NikunjMiglani28" },
+  { name: "X / Twitter",href: "https://x.com/NikunjMiglani28" },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen]           = useState(false);
-  const [scrolled, setScrolled]       = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [hoveredLink, setHoveredLink] = useState(null);
+  const [isOpen,         setIsOpen]         = useState(false);
+  const [scrolled,       setScrolled]       = useState(false);
+  const [activeSection,  setActiveSection]  = useState("");
+  const [hoveredLink,    setHoveredLink]    = useState(null);
+  const linksRef = useRef({});
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); }),
-      { threshold: 0.4 }
-    );
-    navLinks.forEach(({ id }) => { const el = document.getElementById(id); if (el) obs.observe(el); });
-    return () => obs.disconnect();
-  }, []);
-
-  // Close mobile menu on resize to desktop
+  // Close panel on resize to desktop
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setIsOpen(false); };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  // Scroll detection
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Active section via IntersectionObserver
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); }),
+      { threshold: 0.35 }
+    );
+    navLinks.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+
+  // Lock body scroll when mobile panel is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
   return (
     <>
-      {/* Font import + blink keyframe only — nothing Tailwind can do */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap');
-        @keyframes statusPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.75)} }
-        .status-pulse { animation: statusPulse 2.5s ease-in-out infinite; }
-        .nm-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-        .nm-mono  { font-family: 'DM Mono', 'Courier New', monospace; }
+        :root {
+          --accent:    #c4622d;
+          --accent-lt: rgba(196,98,45,0.12);
+          --nav-bg:    rgba(250,248,244,0.88);
+          --nav-bg-scrolled: rgba(250,248,244,0.97);
+          --nav-border: rgba(196,98,45,0.12);
+          --fg:        #292524;
+          --muted:     #78716c;
+          --panel-bg:  #faf8f4;
+        }
+
+        /* ─── Base ─── */
+        .nm-nav {
+          position: fixed; top:0; left:0; right:0; z-index:1000;
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 0 3.5rem;
+          height: 58px;
+          background: var(--nav-bg);
+          backdrop-filter: blur(18px) saturate(180%);
+          -webkit-backdrop-filter: blur(18px) saturate(180%);
+          border-bottom: 1px solid var(--nav-border);
+          font-family: 'DM Mono', 'Courier New', monospace;
+          transition: background 0.35s, box-shadow 0.35s;
+        }
+        .nm-nav.scrolled {
+          background: var(--nav-bg-scrolled);
+          box-shadow: 0 1px 24px rgba(196,98,45,0.07);
+        }
+
+        /* ─── Logo ─── */
+        .nm-logo {
+          display: flex; align-items: center; gap: 0.6rem;
+          text-decoration: none; flex-shrink: 0;
+        }
+        .nm-logo-img {
+          width: 32px; height: 32px; border-radius: 50%;
+          border: 1.5px solid var(--accent);
+          object-fit: cover;
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .nm-logo:hover .nm-logo-img {
+          box-shadow: 0 0 0 3px rgba(196,98,45,0.18);
+          transform: rotate(-6deg) scale(1.05);
+        }
+        .nm-logo-text {
+          font-size: 0.8rem; letter-spacing: 0.2em;
+          color: var(--fg); opacity: 0.85;
+        }
+        .nm-logo-dot { color: var(--accent); }
+
+        /* ─── Desktop links ─── */
+        .nm-desktop {
+          display: flex; align-items: center;
+          gap: 0; position: relative;
+        }
+        .nm-link-wrap { position: relative; }
+        .nm-link {
+          display: block;
+          padding: 0.4rem 1rem;
+          font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: var(--muted); text-decoration: none;
+          transition: color 0.2s; position: relative; z-index: 1;
+        }
+        .nm-link.active,
+        .nm-link:hover { color: var(--fg); }
+
+        /* Framer motion underline is rendered inline — no extra CSS needed */
+
+        /* ─── Right actions ─── */
+        .nm-actions { display: flex; align-items: center; gap: 1rem; }
+
+        .nm-status {
+          display: flex; align-items: center; gap: 0.45rem;
+          font-size: 0.6rem; letter-spacing: 0.18em; color: var(--muted);
+          text-transform: uppercase;
+        }
+        .nm-status-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: #22c55e;
+          animation: nmPulse 2.5s ease-in-out infinite;
+          flex-shrink: 0;
+        }
+
+        .nm-resume {
+          font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+          padding: 0.38rem 0.9rem;
+          border: 1px solid rgba(196,98,45,0.45);
+          color: var(--accent); text-decoration: none; background: transparent;
+          transition: background 0.2s, border-color 0.2s, color 0.2s;
+          font-family: inherit;
+        }
+        .nm-resume:hover {
+          background: var(--accent); color: #fff;
+          border-color: var(--accent);
+        }
+
+        /* ─── Hamburger ─── */
+        .nm-burger {
+          display: none; background: none; border: none;
+          color: var(--fg); cursor: pointer; padding: 6px;
+          border-radius: 4px; transition: color 0.2s, background 0.2s;
+          line-height: 0;
+        }
+        .nm-burger:hover { color: var(--accent); background: var(--accent-lt); }
+
+        /* ─── Mobile slide panel ─── */
+        .nm-panel {
+          position: fixed; top:0; right:0;
+          height: 100dvh; width: min(300px, 85vw);
+          z-index: 1010;
+          background: var(--panel-bg);
+          border-left: 1px solid rgba(196,98,45,0.12);
+          padding: 0 2rem 2.5rem;
+          font-family: 'DM Mono','Courier New',monospace;
+          overflow-y: auto;
+          display: flex; flex-direction: column;
+        }
+        .nm-panel-head {
+          display: flex; align-items: center; justify-content: space-between;
+          height: 58px; flex-shrink: 0;
+        }
+        .nm-close-btn {
+          background: none; border: none; color: var(--muted);
+          cursor: pointer; padding: 4px; line-height:0;
+          transition: color 0.2s;
+        }
+        .nm-close-btn:hover { color: var(--accent); }
+
+        .nm-panel-label {
+          font-size: 0.55rem; letter-spacing: 0.35em;
+          color: var(--muted); text-transform: uppercase;
+          margin-bottom: 1.2rem; margin-top: 0.5rem;
+        }
+        .nm-panel-nav-link {
+          display: block; font-family: 'Cormorant Garamond',Georgia,serif;
+          font-size: 2rem; font-weight: 300;
+          color: var(--fg); text-decoration: none;
+          margin-bottom: 0.25rem; letter-spacing: -0.01em;
+          transition: color 0.15s, padding-left 0.2s;
+        }
+        .nm-panel-nav-link:hover { color: var(--accent); padding-left: 6px; }
+
+        .nm-panel-divider {
+          height: 1px; background: rgba(196,98,45,0.1);
+          margin: 1.5rem 0;
+        }
+        .nm-panel-social {
+          font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+          color: var(--muted); text-decoration: none;
+          display: block; margin-bottom: 0.75rem;
+          transition: color 0.15s;
+        }
+        .nm-panel-social:hover { color: var(--fg); }
+
+        .nm-panel-cv {
+          display: inline-block; margin-top: auto; padding-top: 1.5rem;
+          font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: var(--accent); text-decoration: none;
+          border: 1px solid rgba(196,98,45,0.4);
+          padding: 0.6rem 1rem;
+          transition: background 0.2s, color 0.2s;
+        }
+        .nm-panel-cv:hover { background: var(--accent); color: #fff; }
+
+        @keyframes nmPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+
+        @media (max-width: 767px) {
+          .nm-desktop, .nm-status, .nm-resume { display: none !important; }
+          .nm-burger { display: block; }
+          .nm-nav { padding: 0 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .nm-status-dot { animation: none; }
+          .nm-logo-img { transition: none; }
+        }
+
+        /* kill tap highlight */
+        .nm-nav *, .nm-panel * { -webkit-tap-highlight-color: transparent; }
       `}</style>
 
-      {/* ── NAVBAR ── */}
-      <nav className={`nm-mono fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 h-[60px] border-b transition-all duration-300 ${
-        scrolled
-          ? "bg-[#faf8f4]/95 border-stone-300 shadow-sm backdrop-blur-md"
-          : "bg-[#faf8f4]/80 border-stone-200 backdrop-blur-sm"
-      }`}>
+      {/* ── NAV BAR ── */}
+      <nav className={`nm-nav${scrolled ? " scrolled" : ""}`}>
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
-          <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-stone-300 group-hover:border-orange-500 transition-all duration-300 relative group-hover:rotate-[-5deg] group-hover:shadow-[0_0_12px_rgba(234,88,12,0.25)]">
-            <Image src="/Nlogo.png" alt="NM" fill className="object-cover" />
-          </div>
-          <span className="nm-mono text-[13px] tracking-[0.18em] text-stone-600 group-hover:text-stone-900 transition-colors">
-            NM<span className="text-orange-500">_</span>
+        <Link href="/" className="nm-logo">
+          <img src="/Nlogo.png" alt="NM" className="nm-logo-img" />
+          <span className="nm-logo-text">
+            Nikunj<span className="nm-logo-dot">.</span>
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-0 relative">
+        {/* Desktop links — animated underline via Framer layoutId */}
+        <div className="nm-desktop">
           {navLinks.map(({ name, href, id }) => {
-            const isActive = activeSection === id || hoveredLink === id;
+            const isActive = hoveredLink ? hoveredLink === id : activeSection === id;
             return (
               <div
                 key={id}
-                className="relative"
+                className="nm-link-wrap"
                 onMouseEnter={() => setHoveredLink(id)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
                 <a
                   href={href}
-                  className={`block px-4 py-1.5 nm-mono text-[11px] tracking-[0.22em] uppercase transition-colors duration-200 ${
-                    isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
-                  }`}
+                  className={`nm-link${activeSection === id ? " active" : ""}`}
                 >
                   {name}
                 </a>
                 {isActive && (
                   <motion.div
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-px bg-orange-500"
-                    transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                    layoutId="nm-underline"
+                    style={{
+                      position: "absolute",
+                      bottom: 0, left: "1rem", right: "1rem",
+                      height: "1.5px",
+                      background: "var(--accent)",
+                      borderRadius: "1px",
+                    }}
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
               </div>
@@ -106,25 +288,16 @@ export default function Navbar() {
         </div>
 
         {/* Right side */}
-        <div className="flex items-center gap-4">
-          {/* Status — hidden on small */}
-          <div className="hidden md:flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 status-pulse" />
-            <span className="nm-mono text-[10px] tracking-[0.18em] text-stone-400 uppercase">Open to work</span>
+        <div className="nm-actions">
+          <div className="nm-status">
+            <div className="nm-status-dot" />
+            <span>Available</span>
           </div>
-
-          {/* Resume btn */}
-          <a
-            href="/Nikunjresume.pdf"
-            download
-            className="hidden md:block nm-mono text-[10px] tracking-[0.22em] uppercase px-4 py-1.5 border border-stone-300 text-stone-600 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-200"
-          >
+          <a href="/Nikunjresume.pdf" download className="nm-resume">
             CV ↓
           </a>
-
-          {/* Mobile burger */}
           <button
-            className="md:hidden text-stone-500 hover:text-orange-500 transition-colors p-1"
+            className="nm-burger"
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
           >
@@ -137,92 +310,96 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+            key="overlay"
+            style={{
+              position: "fixed", inset: 0, zIndex: 1005,
+              background: "rgba(41,37,36,0.45)",
+              backdropFilter: "blur(3px)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.22 }}
             onClick={() => setIsOpen(false)}
           />
         )}
       </AnimatePresence>
 
-      {/* ── MOBILE PANEL ── */}
+      {/* ── MOBILE SLIDE PANEL ── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed top-0 right-0 h-full w-72 z-50 bg-[#faf8f4] border-l border-stone-200 px-8 pt-20 pb-10 flex flex-col md:hidden"
+            key="panel"
+            className="nm-panel"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 320, damping: 30 }}
+            transition={{ type: "spring", stiffness: 340, damping: 32 }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
-            <button
-              className="absolute top-5 right-5 text-stone-400 hover:text-stone-800 transition-colors"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close menu"
-            >
-              <X size={18} />
-            </button>
+            {/* Panel header */}
+            <div className="nm-panel-head">
+              <Link href="/" className="nm-logo" onClick={() => setIsOpen(false)}>
+                <img src="/Nlogo.png" alt="NM" className="nm-logo-img" style={{ width: 28, height: 28 }} />
+                <span className="nm-logo-text">
+                  Nikunj<span className="nm-logo-dot">.</span>
+                </span>
+              </Link>
+              <button className="nm-close-btn" onClick={() => setIsOpen(false)} aria-label="Close menu">
+                <X size={20} />
+              </button>
+            </div>
 
             {/* Nav links */}
-            <p className="nm-mono text-[9px] tracking-[0.35em] text-stone-400 uppercase mb-4">Navigation</p>
+            <div className="nm-panel-label">Navigation</div>
             {navLinks.map(({ name, href }, i) => (
               <motion.a
                 key={name}
                 href={href}
-                className="nm-serif font-light text-[2rem] leading-tight text-stone-800 hover:text-orange-600 hover:pl-1.5 transition-all duration-150 mb-1"
-                initial={{ opacity: 0, x: 20 }}
+                className="nm-panel-nav-link"
+                initial={{ opacity: 0, x: 18 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.06 + 0.08 }}
+                transition={{ delay: i * 0.07 + 0.08 }}
                 onClick={() => setIsOpen(false)}
               >
                 {name}
               </motion.a>
             ))}
 
-            <div className="my-6 h-px bg-stone-200" />
+            <div className="nm-panel-divider" />
 
-            {/* Social links */}
-            <p className="nm-mono text-[9px] tracking-[0.35em] text-stone-400 uppercase mb-4">Find me</p>
+            {/* Social */}
+            <div className="nm-panel-label">Find me</div>
             {socialLinks.map(({ name, href }, i) => (
               <motion.a
                 key={name}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nm-mono text-[11px] tracking-[0.15em] uppercase text-stone-500 hover:text-stone-900 transition-colors mb-3"
-                initial={{ opacity: 0, x: 20 }}
+                className="nm-panel-social"
+                initial={{ opacity: 0, x: 18 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.06 + 0.28 }}
+                transition={{ delay: i * 0.07 + 0.28 }}
                 onClick={() => setIsOpen(false)}
               >
                 {name} ↗
               </motion.a>
             ))}
 
-            <div className="my-6 h-px bg-stone-200" />
+            <div className="nm-panel-divider" />
 
-            {/* CV download */}
+            {/* CV */}
             <motion.a
               href="/Nikunjresume.pdf"
               download
-              className="nm-mono text-[11px] tracking-[0.2em] uppercase text-orange-600 hover:text-orange-700 transition-colors"
+              className="nm-panel-cv"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.52 }}
               onClick={() => setIsOpen(false)}
             >
               Download CV ↓
             </motion.a>
-
-            {/* Status dot at bottom */}
-            <div className="mt-auto flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500 status-pulse" />
-              <span className="nm-mono text-[9px] tracking-[0.2em] text-stone-400 uppercase">Open to work</span>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

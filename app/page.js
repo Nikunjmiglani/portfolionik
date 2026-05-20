@@ -120,7 +120,7 @@ function useScrollReveal() {
           obs.unobserve(e.target);
         }
       }),
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
     els.forEach(el => obs.observe(el));
     return () => obs.disconnect();
@@ -150,9 +150,14 @@ function useTypewriter(text, speed = 55, startDelay = 700) {
 function ProjectCard({ project, index }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const cardRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+  }, []);
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isMobile) return;
     const rect = cardRef.current.getBoundingClientRect();
     const dx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
     const dy = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
@@ -163,7 +168,7 @@ function ProjectCard({ project, index }) {
     <div
       ref={cardRef}
       data-reveal
-      className="opacity-0 translate-y-6 transition-all duration-700 bg-white border border-stone-200 overflow-hidden group hover:border-stone-400 hover:shadow-[6px_6px_0_#e7e5e4]"
+      className="opacity-0 translate-y-6 bg-white border border-stone-200 overflow-hidden group hover:border-stone-400 hover:shadow-[6px_6px_0_#e7e5e4] active:shadow-[2px_2px_0_#e7e5e4] active:translate-x-[2px] active:translate-y-[2px]"
       style={{
         transitionDelay: `${index * 0.08}s`,
         transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
@@ -173,7 +178,7 @@ function ProjectCard({ project, index }) {
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
     >
       {/* Image */}
-      <div className={`relative h-52 overflow-hidden ${project.imgBg}`}>
+      <div className={`relative h-48 sm:h-52 overflow-hidden ${project.imgBg}`}>
         <Image
           src={project.img}
           alt={project.title}
@@ -187,27 +192,67 @@ function ProjectCard({ project, index }) {
       </div>
 
       {/* Body */}
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="font-serif text-xl font-light text-stone-800 leading-tight">{project.title}</h3>
           <div className="flex gap-1.5 shrink-0 mt-0.5">
             {project.live && (
               <a href={project.live} target="_blank" rel="noopener noreferrer"
-                className="w-7 h-7 flex items-center justify-center border border-stone-200 text-stone-400 hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50 transition-all rounded-sm">
+                aria-label={`Open ${project.title} live site`}
+                className="w-8 h-8 sm:w-7 sm:h-7 flex items-center justify-center border border-stone-200 text-stone-400 hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50 active:bg-orange-100 transition-all rounded-sm">
                 <FaExternalLinkAlt size={11} />
               </a>
             )}
             {project.repo && (
               <a href={project.repo} target="_blank" rel="noopener noreferrer"
-                className="w-7 h-7 flex items-center justify-center border border-stone-200 text-stone-400 hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50 transition-all rounded-sm">
+                aria-label={`Open ${project.title} GitHub repo`}
+                className="w-8 h-8 sm:w-7 sm:h-7 flex items-center justify-center border border-stone-200 text-stone-400 hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50 active:bg-orange-100 transition-all rounded-sm">
                 <FaGithub size={11} />
               </a>
             )}
           </div>
         </div>
-        <p className="text-[10px] tracking-widest text-orange-500 font-mono mb-2.5 uppercase">{project.tech}</p>
+        <p className="text-[10px] tracking-widest text-orange-500 font-mono mb-2.5 uppercase leading-relaxed">{project.tech}</p>
         <p className="text-[13px] text-stone-500 leading-relaxed">{project.desc}</p>
       </div>
+    </div>
+  );
+}
+
+// Mobile Nav Menu
+function MobileMenu({ open, onClose }) {
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  return (
+    <div
+      className={`fixed inset-0 z-40 bg-[#faf8f4] flex flex-col justify-center items-center gap-8 transition-all duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+    >
+      {[
+        { href: "#about", label: "About" },
+        { href: "#projects", label: "Work" },
+        { href: "#contact", label: "Contact" },
+      ].map(({ href, label }) => (
+        <a
+          key={href}
+          href={href}
+          onClick={onClose}
+          className="font-serif text-4xl font-light text-stone-800 hover:text-orange-600 transition-colors"
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/Nikunjresume.pdf"
+        download
+        onClick={onClose}
+        className="font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-3 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white mt-4 transition-all"
+      >
+        Resume ↗
+      </a>
     </div>
   );
 }
@@ -217,6 +262,7 @@ function ProjectCard({ project, index }) {
 export default function Home() {
   useScrollReveal();
   const { displayed: typedRole, done: roleDone } = useTypewriter('Full Stack Dev · Cybersecurity · Blockchain');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -261,19 +307,46 @@ export default function Home() {
         .animate-fade-up-2 { animation: fadeUp 0.7s ease 0.25s both; }
         .animate-fade-up-3 { animation: fadeUp 0.7s ease 0.45s both; }
         .animate-fade-up-4 { animation: fadeUp 0.7s ease 0.6s both; }
+
+        /* hamburger lines */
+        .ham-line { display:block; width:22px; height:1.5px; background:#44403c; transition: all 0.3s ease; }
+        .ham-open .ham-line:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+        .ham-open .ham-line:nth-child(2) { opacity: 0; transform: translateX(-4px); }
+        .ham-open .ham-line:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+        /* reveal */
+        [data-reveal] { transition: opacity 0.7s ease, transform 0.7s ease; }
+
+        /* mobile tap highlight */
+        * { -webkit-tap-highlight-color: transparent; }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-track { animation: none; }
+          .scroll-line::after { animation: none; }
+          .cursor-blink { animation: none; }
+          .status-pulse { animation: none; }
+          [data-reveal] { opacity: 1 !important; transform: none !important; }
+          .animate-fade-up-1, .animate-fade-up-2, .animate-fade-up-3, .animate-fade-up-4 { animation: none; opacity: 1; }
+        }
       `}</style>
 
       <div className="bg-[#faf8f4] text-stone-800 min-h-screen overflow-x-hidden dot-grid">
 
+        {/* ── MOBILE MENU ── */}
+        <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+
         {/* ── NAV ── */}
-        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-14 py-4 border-b border-stone-200 bg-[#faf8f4]/85 backdrop-blur-md">
-          <div className="font-serif text-xl font-light text-stone-800">
+        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 lg:px-14 py-4 border-b border-stone-200 bg-[#faf8f4]/90 backdrop-blur-md">
+          <a href="#" className="font-serif text-xl font-light text-stone-800 hover:text-orange-600 transition-colors">
             Nikunj<span className="text-orange-600">.</span>
-          </div>
+          </a>
+
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             {["#about", "#projects", "#contact"].map((href, i) => (
               <a key={href} href={href}
-                className="text-stone-500 text-[11px] tracking-[0.2em] uppercase font-mono hover:text-orange-600 transition-colors">
+                className="text-stone-500 text-[11px] tracking-[0.2em] uppercase font-mono hover:text-orange-600 transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-orange-500 hover:after:w-full after:transition-all">
                 {["About", "Work", "Contact"][i]}
               </a>
             ))}
@@ -282,11 +355,22 @@ export default function Home() {
               Resume ↗
             </a>
           </div>
+
+          {/* Hamburger */}
+          <button
+            className={`md:hidden flex flex-col gap-[5px] p-2 -mr-1 z-50 relative ${menuOpen ? 'ham-open' : ''}`}
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label="Toggle menu"
+          >
+            <span className="ham-line" />
+            <span className="ham-line" />
+            <span className="ham-line" />
+          </button>
         </nav>
 
         {/* ── HERO ── */}
-        <section className="min-h-screen flex flex-col justify-center px-14 pt-32 pb-20 relative overflow-hidden">
-          {/* Vertical deco */}
+        <section className="min-h-screen flex flex-col justify-center px-4 sm:px-8 lg:px-14 pt-28 pb-16 sm:pt-32 sm:pb-20 relative overflow-hidden">
+          {/* Vertical deco — desktop only */}
           <div className="hidden lg:flex absolute right-14 top-1/2 -translate-y-1/2 flex-col items-center gap-3 text-stone-400 text-[10px] tracking-[0.3em] uppercase font-mono" style={{ writingMode: 'vertical-rl' }}>
             <div className="w-px h-20 bg-stone-300" />
             Based in Delhi
@@ -294,35 +378,35 @@ export default function Home() {
           </div>
 
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-7 animate-fade-up-1">
+          <div className="flex items-center gap-3 mb-5 sm:mb-7 animate-fade-up-1">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
-            <span className="text-orange-500 text-[11px] tracking-[0.3em] uppercase font-mono">Available for work · 2025</span>
+            <span className="text-orange-500 text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-mono">Available for work · 2025</span>
           </div>
 
           {/* Name */}
           <h1 className="font-serif font-light leading-[0.88] tracking-tight mb-0 animate-fade-up-2"
-            style={{ fontSize: 'clamp(5rem,13vw,12rem)' }}>
+            style={{ fontSize: 'clamp(4rem,15vw,12rem)' }}>
             Nikunj
             <span className="block text-orange-600 italic">Miglani</span>
           </h1>
 
           {/* Divider */}
-          <div className="animate-fade-up-3 my-8 h-px bg-gradient-to-r from-stone-400 via-stone-200 to-transparent" />
+          <div className="animate-fade-up-3 my-6 sm:my-8 h-px bg-gradient-to-r from-stone-400 via-stone-200 to-transparent" />
 
           {/* Bottom row */}
-          <div className="flex flex-wrap items-center justify-between gap-6 animate-fade-up-4">
-            <p className="font-mono text-[13px] text-stone-500 tracking-wide">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4 sm:gap-6 animate-fade-up-4">
+            <p className="font-mono text-[12px] sm:text-[13px] text-stone-500 tracking-wide">
               <span className="text-orange-500 mr-2">→</span>
               {typedRole}
               {!roleDone && (
                 <span className="inline-block w-0.5 h-[0.9em] bg-orange-500 ml-0.5 align-middle cursor-blink" />
               )}
             </p>
-            <div className="flex gap-3 flex-wrap">
-              <a href="#contact" className="font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 transition-all">
+            <div className="flex gap-3">
+              <a href="#contact" className="font-mono text-[11px] tracking-[0.15em] sm:tracking-[0.2em] uppercase px-4 sm:px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 active:scale-95 transition-all">
                 Get In Touch
               </a>
-              <a href="#projects" className="font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-3 bg-transparent text-stone-800 border border-stone-400 hover:bg-stone-800 hover:text-white hover:border-stone-800 transition-all">
+              <a href="#projects" className="font-mono text-[11px] tracking-[0.15em] sm:tracking-[0.2em] uppercase px-4 sm:px-6 py-3 bg-transparent text-stone-800 border border-stone-400 hover:bg-stone-800 hover:text-white hover:border-stone-800 active:scale-95 transition-all">
                 View Work
               </a>
             </div>
@@ -336,72 +420,77 @@ export default function Home() {
         </section>
 
         {/* ── STATUS BAR ── */}
-        <div className="border-t border-b border-stone-200 bg-stone-50 flex items-center overflow-x-auto px-14">
-          {[
-            { dot: true, label: "Available for freelance" },
-            { label: "2nd Year · SRM University" },
-            { label: "20+ Projects Built" },
-            { label: "niikkunjmiglani@gmail.com" },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.18em] text-stone-500 uppercase whitespace-nowrap px-6 py-3 border-r border-stone-200 last:border-r-0">
-              {item.dot && <div className="w-1.5 h-1.5 rounded-full bg-green-500 status-pulse" />}
-              {item.label}
-            </div>
-          ))}
+        <div className="border-t border-b border-stone-200 bg-stone-50 overflow-x-auto scrollbar-hide">
+          <div className="flex min-w-max">
+            {[
+              { dot: true, label: "Available for freelance" },
+              { label: "2nd Year · SRM University" },
+              { label: "20+ Projects Built" },
+              { label: "niikkunjmiglani@gmail.com" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.15em] sm:tracking-[0.18em] text-stone-500 uppercase whitespace-nowrap px-5 sm:px-6 py-3 border-r border-stone-200 last:border-r-0">
+                {item.dot && <div className="w-1.5 h-1.5 rounded-full bg-green-500 status-pulse shrink-0" />}
+                {item.label}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── ABOUT ── */}
-        <section id="about" className="max-w-[1400px] mx-auto px-14 py-36 grid grid-cols-1 lg:grid-cols-2 gap-28">
+        <section id="about" className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 py-20 sm:py-28 lg:py-36 grid grid-cols-1 lg:grid-cols-2 gap-14 sm:gap-20 lg:gap-28">
           {/* Left */}
-          <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700">
-            <div className="flex items-center gap-3 mb-6">
+          <div data-reveal className="opacity-0 translate-y-6">
+            <div className="flex items-center gap-3 mb-5 sm:mb-6">
               <span className="text-orange-500 text-[10px] tracking-[0.35em] uppercase font-mono">01 — Who I Am</span>
-              <div className="w-12 h-px bg-stone-300" />
+              <div className="w-8 sm:w-12 h-px bg-stone-300" />
             </div>
-            <h2 className="font-serif font-light leading-[1.15] mb-8 text-stone-800"
-              style={{ fontSize: 'clamp(2rem,4vw,3.2rem)' }}>
+            <h2 className="font-serif font-light leading-[1.15] mb-6 sm:mb-8 text-stone-800"
+              style={{ fontSize: 'clamp(1.8rem,4vw,3.2rem)' }}>
               I build things that<br />
               <em className="italic text-orange-600">live on the internet</em>
             </h2>
-            <p className="font-mono text-[13px] text-stone-500 leading-loose mb-5">
+            <p className="font-mono text-[13px] text-stone-500 leading-loose mb-4 sm:mb-5">
               A developer from Delhi, currently in my 2nd year at SRM University. I enjoy building real,
               shipped products — not just side projects that collect dust.
             </p>
-            <p className="font-mono text-[13px] text-stone-500 leading-loose mb-5">
+            <p className="font-mono text-[13px] text-stone-500 leading-loose mb-4 sm:mb-5">
               I&apos;ve delivered freelance projects, dived deep into cybersecurity, and explored blockchain.
               I love combining practical experience with continuous learning.
             </p>
             <p className="font-mono text-[13px] text-stone-500 leading-loose">
               When not coding — Finance books, good music, or a walk outside.
             </p>
-            <div className="flex flex-wrap gap-2 mt-6">
+            <div className="flex flex-wrap gap-2 mt-5 sm:mt-6">
               {skills.map(s => (
-                <span key={s} className="font-mono text-[10px] tracking-[0.15em] uppercase px-3 py-1 border border-stone-300 text-stone-500 bg-stone-50">
+                <span key={s} className="font-mono text-[10px] tracking-[0.15em] uppercase px-3 py-1.5 border border-stone-300 text-stone-500 bg-stone-50">
                   {s}
                 </span>
               ))}
             </div>
-            <div className="flex gap-3 mt-8 flex-wrap">
+            <div className="flex gap-3 mt-6 sm:mt-8 flex-wrap">
               <a href="/Nikunjresume.pdf" download
-                className="font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 transition-all">
+                className="font-mono text-[11px] tracking-[0.2em] uppercase px-5 sm:px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 active:scale-95 transition-all">
                 Download CV
               </a>
               <a href="mailto:niikkunjmiglani@gmail.com"
-                className="font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-3 bg-transparent text-stone-800 border border-stone-400 hover:bg-stone-800 hover:text-white hover:border-stone-800 transition-all">
+                className="font-mono text-[11px] tracking-[0.2em] uppercase px-5 sm:px-6 py-3 bg-transparent text-stone-800 border border-stone-400 hover:bg-stone-800 hover:text-white hover:border-stone-800 active:scale-95 transition-all">
                 Email Me
               </a>
             </div>
           </div>
 
           {/* Right */}
-          <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700" style={{ transitionDelay: '0.12s' }}>
-            <div className="w-20 h-20 rounded-full border-2 border-stone-300 overflow-hidden relative mb-8 shadow-[4px_4px_0_#e7e5e4]">
-              <Image src="/Nikunj.jpg" fill alt="Nikunj" style={{ objectFit: 'cover' }} />
+          <div data-reveal className="opacity-0 translate-y-6" style={{ transitionDelay: '0.12s' }}>
+            {/* Photo — centered on mobile */}
+            <div className="flex lg:block justify-center lg:justify-start">
+              <div className="w-20 h-20 rounded-full border-2 border-stone-300 overflow-hidden relative mb-6 sm:mb-8 shadow-[4px_4px_0_#e7e5e4]">
+                <Image src="/Nikunj.jpg" fill alt="Nikunj" style={{ objectFit: 'cover' }} />
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-px bg-stone-200 border border-stone-200 mb-8">
+            <div className="grid grid-cols-2 gap-px bg-stone-200 border border-stone-200 mb-6 sm:mb-8">
               {stats.map((s, i) => (
-                <div key={i} className="bg-[#faf8f4] p-6 hover:bg-orange-50 transition-colors">
-                  <div className="font-serif text-4xl font-light text-orange-600 leading-none">{s.num}</div>
+                <div key={i} className="bg-[#faf8f4] p-5 sm:p-6 hover:bg-orange-50 transition-colors">
+                  <div className="font-serif text-3xl sm:text-4xl font-light text-orange-600 leading-none">{s.num}</div>
                   <div className="font-mono text-[10px] tracking-[0.2em] text-stone-400 uppercase mt-1">{s.label}</div>
                 </div>
               ))}
@@ -410,15 +499,15 @@ export default function Home() {
         </section>
 
         {/* ── TOOLS MARQUEE ── */}
-        <section className="border-t border-b border-stone-200 bg-stone-50 py-10">
-          <p className="font-mono text-[10px] tracking-[0.35em] text-stone-400 uppercase px-14 mb-5">Tech Arsenal</p>
+        <section className="border-t border-b border-stone-200 bg-stone-50 py-8 sm:py-10">
+          <p className="font-mono text-[10px] tracking-[0.35em] text-stone-400 uppercase px-4 sm:px-8 lg:px-14 mb-4 sm:mb-5">Tech Arsenal</p>
           <div className="overflow-hidden relative">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-stone-50 to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-stone-50 to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-stone-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none" />
             <div className="flex gap-2 w-max marquee-track">
               {[...tools, ...tools].map((tool, i) => (
                 <div key={i}
-                  className="flex items-center gap-2.5 bg-white border border-stone-200 px-4 py-2.5 font-mono text-[12px] text-stone-700 whitespace-nowrap hover:border-orange-400 hover:bg-orange-50 hover:text-orange-600 transition-all rounded-sm cursor-default">
+                  className="flex items-center gap-2.5 bg-white border border-stone-200 px-4 py-2.5 font-mono text-[12px] text-stone-700 whitespace-nowrap hover:border-orange-400 hover:bg-orange-50 hover:text-orange-600 transition-all rounded-sm cursor-default select-none">
                   <span className="text-base leading-none">{tool.icon}</span>
                   {tool.name}
                 </div>
@@ -428,21 +517,21 @@ export default function Home() {
         </section>
 
         {/* ── PROJECTS ── */}
-        <section id="projects" className="max-w-[1400px] mx-auto px-14 py-36">
-          <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700 flex flex-wrap items-end justify-between gap-4 mb-16">
+        <section id="projects" className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 py-20 sm:py-28 lg:py-36">
+          <div data-reveal className="opacity-0 translate-y-6 flex flex-wrap items-end justify-between gap-3 sm:gap-4 mb-10 sm:mb-14 lg:mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <span className="text-orange-500 text-[10px] tracking-[0.35em] uppercase font-mono">02 — Featured Work</span>
-                <div className="w-12 h-px bg-stone-300" />
+                <div className="w-8 sm:w-12 h-px bg-stone-300" />
               </div>
-              <h2 className="font-serif font-light text-stone-800" style={{ fontSize: 'clamp(2.2rem,5vw,4rem)' }}>
+              <h2 className="font-serif font-light text-stone-800" style={{ fontSize: 'clamp(2rem,5vw,4rem)' }}>
                 Selected Projects
               </h2>
             </div>
-            <span className="font-serif italic text-stone-400 text-lg">Six selected works</span>
+            <span className="font-serif italic text-stone-400 text-base sm:text-lg">Six selected works</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
             ))}
@@ -450,24 +539,24 @@ export default function Home() {
         </section>
 
         {/* ── GITHUB ── */}
-        <section className="border-t border-stone-200 bg-stone-50 py-36 px-14">
+        <section className="border-t border-stone-200 bg-stone-50 py-20 sm:py-28 lg:py-36 px-4 sm:px-8 lg:px-14">
           <div className="max-w-[1400px] mx-auto">
-            <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700 mb-4">
-              <div className="flex items-center gap-3 mb-4">
+            <div data-reveal className="opacity-0 translate-y-6 mb-4">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <span className="text-orange-500 text-[10px] tracking-[0.35em] uppercase font-mono">03 — Activity</span>
-                <div className="w-12 h-px bg-stone-300" />
+                <div className="w-8 sm:w-12 h-px bg-stone-300" />
               </div>
-              <h2 className="font-serif font-light text-stone-800" style={{ fontSize: 'clamp(2.2rem,5vw,4rem)' }}>
+              <h2 className="font-serif font-light text-stone-800" style={{ fontSize: 'clamp(2rem,5vw,4rem)' }}>
                 GitHub Contributions
               </h2>
             </div>
-            <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700 mt-10 bg-white border border-stone-200 p-8 overflow-x-auto" style={{ transitionDelay: '0.1s' }}>
-              <div className="flex justify-center">
+            <div data-reveal className="opacity-0 translate-y-6 mt-8 sm:mt-10 bg-white border border-stone-200 p-4 sm:p-8 overflow-x-auto" style={{ transitionDelay: '0.1s' }}>
+              <div className="flex justify-start sm:justify-center min-w-max sm:min-w-0">
                 <GitHubCalendar
                   username="Nikunjmiglani"
-                  blockSize={12}
+                  blockSize={11}
                   blockMargin={4}
-                  fontSize={13}
+                  fontSize={12}
                   colorScheme="light"
                   theme={{
                     light: ['#f5f0ea', '#fcd9b8', '#f4a464', '#e07230', '#c4622d'],
@@ -483,36 +572,37 @@ export default function Home() {
 
         {/* ── FOOTER / CONTACT ── */}
         <footer id="contact" className="border-t border-stone-200 bg-[#faf8f4]">
-          <div className="max-w-[1400px] mx-auto px-14 py-36 grid grid-cols-1 lg:grid-cols-2 gap-28">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 py-20 sm:py-28 lg:py-36 grid grid-cols-1 lg:grid-cols-2 gap-14 sm:gap-20 lg:gap-28">
             {/* Left */}
-            <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700">
-              <div className="flex items-center gap-3 mb-6">
+            <div data-reveal className="opacity-0 translate-y-6">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6">
                 <span className="text-orange-500 text-[10px] tracking-[0.35em] uppercase font-mono">04 — Contact</span>
-                <div className="w-12 h-px bg-stone-300" />
+                <div className="w-8 sm:w-12 h-px bg-stone-300" />
               </div>
-              <h2 className="font-serif font-light leading-[1.05] text-stone-800 mb-6"
-                style={{ fontSize: 'clamp(2.5rem,6vw,5rem)' }}>
+              <h2 className="font-serif font-light leading-[1.05] text-stone-800 mb-5 sm:mb-6"
+                style={{ fontSize: 'clamp(2.2rem,6vw,5rem)' }}>
                 Let&apos;s build<br />
                 <em className="italic text-orange-600">something.</em>
               </h2>
-              <p className="font-mono text-[13px] text-stone-500 leading-loose mb-8">
-                Open to work, freelance, or collaboration.<br />
+              <p className="font-mono text-[13px] text-stone-500 leading-loose mb-6 sm:mb-8">
+                Open to work, freelance, or collaboration.<br className="hidden sm:block" />
                 Drop a line at{" "}
                 <a href="mailto:niikkunjmiglani@gmail.com"
-                  className="text-stone-700 underline underline-offset-4 hover:text-orange-600 transition-colors">
+                  className="text-stone-700 underline underline-offset-4 hover:text-orange-600 transition-colors break-all sm:break-normal">
                   niikkunjmiglani@gmail.com
                 </a>
               </p>
-              <div className="flex gap-2 flex-wrap mb-10">
+              <div className="flex gap-2 flex-wrap mb-8 sm:mb-10">
                 {[
-                  { href: "https://github.com/Nikunjmiglani", icon: <FaGithub size={15} /> },
-                  { href: "https://www.linkedin.com/in/nikunjmiglani/", icon: <FaLinkedinIn size={15} /> },
-                  { href: "https://www.instagram.com/niikkunj_/", icon: <FaInstagram size={15} /> },
-                  { href: "https://x.com/NikunjMiglani28", icon: <FaXTwitter size={15} /> },
-                  { href: "https://coff.ee/nikunjmiglani", icon: <SiBuymeacoffee size={15} /> },
+                  { href: "https://github.com/Nikunjmiglani", icon: <FaGithub size={15} />, label: "GitHub" },
+                  { href: "https://www.linkedin.com/in/nikunjmiglani/", icon: <FaLinkedinIn size={15} />, label: "LinkedIn" },
+                  { href: "https://www.instagram.com/niikkunj_/", icon: <FaInstagram size={15} />, label: "Instagram" },
+                  { href: "https://x.com/NikunjMiglani28", icon: <FaXTwitter size={15} />, label: "X / Twitter" },
+                  { href: "https://coff.ee/nikunjmiglani", icon: <SiBuymeacoffee size={15} />, label: "Buy me a coffee" },
                 ].map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="w-9 h-9 flex items-center justify-center border border-stone-300 text-stone-500 hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 transition-all rounded-sm">
+                    aria-label={s.label}
+                    className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center border border-stone-300 text-stone-500 hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 active:bg-orange-100 transition-all rounded-sm">
                     {s.icon}
                   </a>
                 ))}
@@ -523,35 +613,36 @@ export default function Home() {
             </div>
 
             {/* Right — Contact Form */}
-            <div data-reveal className="opacity-0 translate-y-6 transition-all duration-700" style={{ transitionDelay: '0.12s' }}>
-              <p className="font-serif font-light text-2xl text-stone-700 mb-6">Send a message</p>
+            <div data-reveal className="opacity-0 translate-y-6" style={{ transitionDelay: '0.12s' }}>
+              <p className="font-serif font-light text-xl sm:text-2xl text-stone-700 mb-5 sm:mb-6">Send a message</p>
               <form
                 className="flex flex-col gap-3"
                 action="https://formspree.io/f/mgvynjpo"
                 method="POST"
               >
-                <div className="flex gap-3">
+                {/* Stack on mobile, row on sm+ */}
+                <div className="flex flex-col sm:flex-row gap-3">
                   <input
                     type="text" name="fullName" placeholder="Full Name" required
-                    className="flex-1 bg-stone-50 border border-stone-200 px-4 py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
+                    className="flex-1 bg-stone-50 border border-stone-200 px-4 py-3.5 sm:py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
                   />
                   <input
                     type="text" name="phone" placeholder="Phone No"
-                    className="flex-1 bg-stone-50 border border-stone-200 px-4 py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
+                    className="flex-1 bg-stone-50 border border-stone-200 px-4 py-3.5 sm:py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
                   />
                 </div>
                 <input
                   type="email" name="email" placeholder="Email" required
-                  className="bg-stone-50 border border-stone-200 px-4 py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
+                  className="bg-stone-50 border border-stone-200 px-4 py-3.5 sm:py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all"
                 />
                 <textarea
                   name="message" placeholder="Message" rows={5} required
-                  className="bg-stone-50 border border-stone-200 px-4 py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all resize-none"
+                  className="bg-stone-50 border border-stone-200 px-4 py-3.5 sm:py-3 font-mono text-[12px] text-stone-700 placeholder-stone-400 outline-none focus:border-orange-400 focus:bg-orange-50 transition-all resize-none"
                 />
                 <input type="text" name="_gotcha" className="hidden" />
                 <button
                   type="submit"
-                  className="bg-orange-600 text-white font-mono text-[11px] tracking-[0.2em] uppercase py-3.5 border border-orange-600 hover:bg-transparent hover:text-orange-600 transition-all">
+                  className="bg-orange-600 text-white font-mono text-[11px] tracking-[0.2em] uppercase py-4 sm:py-3.5 border border-orange-600 hover:bg-transparent hover:text-orange-600 active:scale-95 transition-all">
                   Send Message →
                 </button>
               </form>
