@@ -6,7 +6,7 @@ import { SiBuymeacoffee } from "react-icons/si";
 import {
   SiNextdotjs, SiReact, SiNodedotjs, SiExpress, SiMongodb,
   SiPython, SiGit, SiLinux, SiTailwindcss, SiTypescript,
-  SiJavascript, SiPostgresql, SiSolidity,
+  SiJavascript, SiPostgresql, SiSolidity, SiKalilinux, SiWireshark,
 } from "react-icons/si";
 import Image from 'next/image';
 import GitHubCalendar from 'react-github-calendar';
@@ -29,7 +29,7 @@ const projects = [
   {
     title: "VulnScan",
     tech: "Next.js · FastAPI · Python · Groq AI",
-    desc: "Automated vulnerability scanning system with AI-powered reporting and real-time threat analysis.",
+    desc: "Automated vulnerability scanning system with AI-powered reporting and real-time threat analysis — identifies CVEs, open ports, and attack surfaces.",
     img: "/vuln_scan.jpg",
     repo: "https://github.com/Nikunjmiglani/advanced-vulnerability-scanner",
     tag: "Cybersecurity",
@@ -37,20 +37,18 @@ const projects = [
     imgBg: "bg-red-50",
   },
   {
-    title: "ArcArea",
-    tech: "Next.js · Framer · Sanity CMS · MongoDB",
-    desc: "Marketplace for hiring top vendors, architects, interior designers and furniture manufacturers.",
-    img: "/ArcArea.png",
-    live: "https://arcarea.vercel.app/",
-    repo: "https://github.com/Nikunjmiglani/Arcarea.git",
-    tag: "Marketplace",
-    tagStyle: "bg-blue-50 text-blue-700 border-blue-200",
-    imgBg: "bg-blue-50",
+    title: "Quizzkr",
+    tech: "Next.js · Tailwind · Prisma · NeonDB · Framer Motion",
+    desc: "Secure online quiz platform with role-based access, time-limited sessions, anti-cheat mechanisms, and real-time leaderboards backed by PostgreSQL.",
+    img: "/quizzkr.png",
+    tag: "Security · EdTech",
+    tagStyle: "bg-sky-50 text-sky-700 border-sky-200",
+    imgBg: "bg-sky-50",
   },
   {
     title: "Miggla Website",
     tech: "Next.js · Sanity CMS · Tailwind · Framer",
-    desc: "Premium website for an interior design firm with CMS-driven content.",
+    desc: "Premium website for an interior design firm with CMS-driven content and fluid animations.",
     img: "/Miggla.png",
     live: "https://miggla.vercel.app/",
     tag: "Freelance",
@@ -60,7 +58,7 @@ const projects = [
   {
     title: "FNDP",
     tech: "Next.js · Python · Scikit-learn",
-    desc: "AI-powered Fake News Detection Platform using ML models to classify news articles as real or fake.",
+    desc: "AI-powered Fake News Detection Platform using ML models to classify news articles as real or fake with explainability outputs.",
     img: "/fndp.png",
     live: "https://fndp-frontend.vercel.app",
     repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
@@ -71,7 +69,7 @@ const projects = [
   {
     title: "Whabitr",
     tech: "Next.js · MongoDB · Express.js · NextAuth",
-    desc: "Daily Habit Tracker with streak system and 90-day calendar view.",
+    desc: "Daily Habit Tracker with streak system, 90-day calendar view, and secure session management.",
     img: "/SS.png",
     live: "https://whabitr.online/",
     repo: "https://github.com/Nikunjmiglani/habiter",
@@ -82,30 +80,31 @@ const projects = [
 ];
 
 const tools = [
+  { name: "Kali Linux",   icon: <SiLinux color="#444" /> },
+  { name: "Wireshark",    icon: <SiWireshark color="#1679a7" /> },
+  { name: "Python",       icon: <SiPython color="#2563eb" /> },
+  { name: "Linux",        icon: <SiLinux color="#444" /> },
   { name: "Next.js",      icon: <SiNextdotjs color="#111" /> },
   { name: "React.js",     icon: <SiReact color="#0ea5e9" /> },
   { name: "TailwindCSS",  icon: <SiTailwindcss color="#06b6d4" /> },
   { name: "TypeScript",   icon: <SiTypescript color="#3178C6" /> },
   { name: "JavaScript",   icon: <SiJavascript color="#ca8a04" /> },
-  { name: "FastAPI",      icon: <SiPython color="#2563eb" /> },
-  { name: "Node.js",      icon: <SiNodedotjs color="#16a34a" /> },
-  { name: "Express.js",   icon: <SiExpress color="#555" /> },
-  { name: "MongoDB",      icon: <SiMongodb color="#16a34a" /> },
   { name: "PostgreSQL",   icon: <SiPostgresql color="#336791" /> },
-  { name: "Linux / Kali", icon: <SiLinux color="#444" /> },
-  { name: "Python",       icon: <SiPython color="#2563eb" /> },
+  { name: "Node.js",      icon: <SiNodedotjs color="#16a34a" /> },
+  { name: "MongoDB",      icon: <SiMongodb color="#16a34a" /> },
   { name: "Solidity",     icon: <SiSolidity color="#888" /> },
   { name: "Git",          icon: <SiGit color="#e05d44" /> },
 ];
 
 const stats = [
   { num: "20+", label: "Projects Built" },
-  { num: "2+",  label: "Years Coding" },
-  { num: "∞",   label: "Curiosity" },
+  { num: "2+",  label: "Years in Security" },
   { num: "4",   label: "Domains" },
+  { num: "∞",   label: "Curiosity" },
 ];
 
-const skills = ["Full Stack", "Blockchain", "Cybersecurity", "AI / ML", "Freelancer"];
+// Skills reordered: Cyber first, then IT/Networking, Full Stack is support
+const skills = ["Cybersecurity", "IT / Networking", "Full Stack", "Blockchain", "AI / ML"];
 
 // ─── HOOKS ───────────────────────────────────────────────────────────────────
 
@@ -261,7 +260,8 @@ function MobileMenu({ open, onClose }) {
 
 export default function Home() {
   useScrollReveal();
-  const { displayed: typedRole, done: roleDone } = useTypewriter('Full Stack Dev · Cybersecurity · Blockchain');
+  // Updated typewriter: Cyber first, IT/Networking second, Full Stack as support
+  const { displayed: typedRole, done: roleDone } = useTypewriter('Cybersecurity · IT & Networking · Full Stack');
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -377,10 +377,12 @@ export default function Home() {
             <div className="w-px h-20 bg-stone-300" />
           </div>
 
-          {/* Eyebrow */}
+          {/* Eyebrow — cyber-flavored availability tag */}
           <div className="flex items-center gap-3 mb-5 sm:mb-7 animate-fade-up-1">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
-            <span className="text-orange-500 text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-mono">Available for work · 2025</span>
+            <span className="text-orange-500 text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-mono">
+              Open to Cyber &amp; IT Roles · 2025
+            </span>
           </div>
 
           {/* Name */}
@@ -423,9 +425,9 @@ export default function Home() {
         <div className="border-t border-b border-stone-200 bg-stone-50 overflow-x-auto scrollbar-hide">
           <div className="flex min-w-max">
             {[
-              { dot: true, label: "Available for freelance" },
+              { dot: true, label: "Seeking Cyber & IT Roles" },
               { label: "2nd Year · SRM University" },
-              { label: "20+ Projects Built" },
+              { label: "Ethical Hacking · Pentesting · Networking" },
               { label: "niikkunjmiglani@gmail.com" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.15em] sm:tracking-[0.18em] text-stone-500 uppercase whitespace-nowrap px-5 sm:px-6 py-3 border-r border-stone-200 last:border-r-0">
@@ -446,19 +448,21 @@ export default function Home() {
             </div>
             <h2 className="font-serif font-light leading-[1.15] mb-6 sm:mb-8 text-stone-800"
               style={{ fontSize: 'clamp(1.8rem,4vw,3.2rem)' }}>
-              I build things that<br />
-              <em className="italic text-orange-600">live on the internet</em>
+              I secure, connect, and<br />
+              <em className="italic text-orange-600">build the internet.</em>
             </h2>
             <p className="font-mono text-[13px] text-stone-500 leading-loose mb-4 sm:mb-5">
-              A developer from Delhi, currently in my 2nd year at SRM University. I enjoy building real,
-              shipped products — not just side projects that collect dust.
+              A cybersecurity-focused developer from Delhi, currently in my 2nd year at SRM University.
+              My primary interest is offensive and defensive security — ethical hacking, vulnerability
+              assessment, and IT/networking fundamentals.
             </p>
             <p className="font-mono text-[13px] text-stone-500 leading-loose mb-4 sm:mb-5">
-              I&apos;ve delivered freelance projects, dived deep into cybersecurity, and explored blockchain.
-              I love combining practical experience with continuous learning.
+              I back that with full-stack engineering ability — so I don&apos;t just find the holes,
+              I understand the systems they live in. That combination makes me useful across
+              security ops, IT support, and network administration roles.
             </p>
             <p className="font-mono text-[13px] text-stone-500 leading-loose">
-              When not coding — Finance books, good music, or a walk outside.
+              When not at a terminal — Finance books, good music, or a walk outside.
             </p>
             <div className="flex flex-wrap gap-2 mt-5 sm:mt-6">
               {skills.map(s => (
@@ -500,7 +504,7 @@ export default function Home() {
 
         {/* ── TOOLS MARQUEE ── */}
         <section className="border-t border-b border-stone-200 bg-stone-50 py-8 sm:py-10">
-          <p className="font-mono text-[10px] tracking-[0.35em] text-stone-400 uppercase px-4 sm:px-8 lg:px-14 mb-4 sm:mb-5">Tech Arsenal</p>
+          <p className="font-mono text-[10px] tracking-[0.35em] text-stone-400 uppercase px-4 sm:px-8 lg:px-14 mb-4 sm:mb-5">Tools &amp; Stack</p>
           <div className="overflow-hidden relative">
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-stone-50 to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-stone-50 to-transparent z-10 pointer-events-none" />
@@ -585,7 +589,7 @@ export default function Home() {
                 <em className="italic text-orange-600">something.</em>
               </h2>
               <p className="font-mono text-[13px] text-stone-500 leading-loose mb-6 sm:mb-8">
-                Open to work, freelance, or collaboration.<br className="hidden sm:block" />
+                Open to Cybersecurity, IT, Networking, and Full Stack roles.<br className="hidden sm:block" />
                 Drop a line at{" "}
                 <a href="mailto:niikkunjmiglani@gmail.com"
                   className="text-stone-700 underline underline-offset-4 hover:text-orange-600 transition-colors break-all sm:break-normal">
