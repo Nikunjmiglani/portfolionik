@@ -245,7 +245,7 @@ function MobileMenu({ open, onClose }) {
         </a>
       ))}
       <a
-        href="/Nikunjresume.pdf"
+        href="/NikunjresumeCyber.pdf"
         download
         onClick={onClose}
         className="font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-3 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white mt-4 transition-all"
