@@ -472,7 +472,7 @@ export default function Home() {
               ))}
             </div>
             <div className="flex gap-3 mt-6 sm:mt-8 flex-wrap">
-              <a href="/Nikunj.pdf" download
+              <a href="/Nikunjmiglani.pdf" download
                 className="font-mono text-[11px] tracking-[0.2em] uppercase px-5 sm:px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 active:scale-95 transition-all">
                 Download CV
               </a>
