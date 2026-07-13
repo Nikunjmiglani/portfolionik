@@ -293,8 +293,8 @@ export default function Navbar() {
             <div className="nm-status-dot" />
             <span>Available</span>
           </div>
-          <a href="/Nikunjresume.pdf" download className="nm-resume">
-            CV ↓
+          <a href="/Nikunjmiglani.pdf" download className="nm-resume">
+            Get Resume ↓
           </a>
           <button
             className="nm-burger"
@@ -390,7 +390,7 @@ export default function Navbar() {
 
             {/* CV */}
             <motion.a
-              href="/Nikunjresume.pdf"
+              href="/Nikunjmiglani.pdf"
               download
               className="nm-panel-cv"
               initial={{ opacity: 0 }}
