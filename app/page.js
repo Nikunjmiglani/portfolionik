@@ -245,7 +245,7 @@ function MobileMenu({ open, onClose }) {
         </a>
       ))}
       <a
-        href="/Nikunj.pdf"
+        href="/Nikunjmiglani.pdf"
         download
         onClick={onClose}
         className="font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-3 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white mt-4 transition-all"
@@ -350,7 +350,7 @@ export default function Home() {
                 {["About", "Work", "Contact"][i]}
               </a>
             ))}
-            <a href="/Nikunj.pdf" download
+            <a href="/Nikunjmiglani.pdf" download
               className="text-[11px] tracking-[0.18em] uppercase font-mono px-4 py-2 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white hover:border-stone-800 transition-all">
               Resume ↗
             </a>
