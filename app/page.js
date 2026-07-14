@@ -16,6 +16,37 @@ import { useEffect, useState, useRef } from "react";
 
 const projects = [
   {
+    title: "VulnScan",
+    tech: "Next.js · FastAPI · Python · Groq AI",
+    desc: "Automated vulnerability scanning system with AI-powered reporting and real-time threat analysis — identifies CVEs, open ports, and attack surfaces.",
+    img: "/vuln_scan.jpg",
+    repo: "https://github.com/Nikunjmiglani/advanced-vulnerability-scanner",
+    tag: "Cybersecurity",
+    tagStyle: "bg-red-50 text-red-700 border-red-200",
+    imgBg: "bg-red-50",
+  },
+  {
+    title: "Home SOC Lab",
+    tech: "Wazuh · SIEM · Python · MITRE ATT&CK",
+    desc: "Self-built Security Operations Center lab with custom Wazuh detection rules mapped to MITRE ATT&CK and a Python threat-intel enrichment pipeline for real-time alert triage.",
+    img: "/image.png",
+    repo: "https://github.com/Nikunjmiglani/home-soc-lab",
+    tag: "Cybersecurity · SOC",
+    tagStyle: "bg-red-50 text-red-700 border-red-200",
+    imgBg: "bg-red-50",
+  },
+  {
+    title: "Quizzkr",
+    tech: "Next.js · Tailwind · Prisma · NeonDB · Framer Motion",
+    desc: "Secure online quiz platform with role-based access, time-limited sessions, anti-cheat mechanisms, and real-time leaderboards backed by PostgreSQL.",
+    img: "/quizzkr.png",
+    live: "https://quizzkr.vercel.app",
+    repo: "https://github.com/Nikunjmiglani/quizz",
+    tag: "Security · EdTech",
+    tagStyle: "bg-sky-50 text-sky-700 border-sky-200",
+    imgBg: "bg-sky-50",
+  },
+  {
     title: "AyuTrace",
     tech: "Next.js · Solidity · Ether.js · MongoDB",
     desc: "Blockchain-powered traceability system ensuring secure, transparent, and tamper-proof tracking of products from origin to end-user.",
@@ -27,23 +58,15 @@ const projects = [
     imgBg: "bg-emerald-50",
   },
   {
-    title: "VulnScan",
-    tech: "Next.js · FastAPI · Python · Groq AI",
-    desc: "Automated vulnerability scanning system with AI-powered reporting and real-time threat analysis — identifies CVEs, open ports, and attack surfaces.",
-    img: "/vuln_scan.jpg",
-    repo: "https://github.com/Nikunjmiglani/advanced-vulnerability-scanner",
-    tag: "Cybersecurity",
-    tagStyle: "bg-red-50 text-red-700 border-red-200",
-    imgBg: "bg-red-50",
-  },
-  {
-    title: "Quizzkr",
-    tech: "Next.js · Tailwind · Prisma · NeonDB · Framer Motion",
-    desc: "Secure online quiz platform with role-based access, time-limited sessions, anti-cheat mechanisms, and real-time leaderboards backed by PostgreSQL.",
-    img: "/quizzkr.png",
-    tag: "Security · EdTech",
-    tagStyle: "bg-sky-50 text-sky-700 border-sky-200",
-    imgBg: "bg-sky-50",
+    title: "FNDP",
+    tech: "Next.js · Python · Scikit-learn",
+    desc: "AI-powered Fake News Detection Platform using ML models to classify news articles as real or fake with explainability outputs.",
+    img: "/fndp.png",
+    live: "https://fndp-frontend.vercel.app",
+    repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
+    tag: "AI / ML",
+    tagStyle: "bg-violet-50 text-violet-700 border-violet-200",
+    imgBg: "bg-violet-50",
   },
   {
     title: "Miggla Website",
@@ -56,15 +79,14 @@ const projects = [
     imgBg: "bg-orange-50",
   },
   {
-    title: "FNDP",
-    tech: "Next.js · Python · Scikit-learn",
-    desc: "AI-powered Fake News Detection Platform using ML models to classify news articles as real or fake with explainability outputs.",
-    img: "/fndp.png",
-    live: "https://fndp-frontend.vercel.app",
-    repo: "https://github.com/Nikunjmiglani/FNDP-Frontend",
-    tag: "AI / ML",
-    tagStyle: "bg-violet-50 text-violet-700 border-violet-200",
-    imgBg: "bg-violet-50",
+    title: "HireVexa Consultancy",
+    tech: "Next.js · Prisma · PostgreSQL · Vercel",
+    desc: "Job placement and LMS platform for a consultancy client — course creation, branded content management, and full SEO implementation with structured schema markup.",
+    img: "/hirevexa.png",
+    live: "https://hirevexaconsultancy.in",
+    tag: "Freelance",
+    tagStyle: "bg-orange-50 text-orange-700 border-orange-200",
+    imgBg: "bg-orange-50",
   },
   {
     title: "Whabitr",
@@ -381,7 +403,7 @@ export default function Home() {
           <div className="flex items-center gap-3 mb-5 sm:mb-7 animate-fade-up-1">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
             <span className="text-orange-500 text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-mono">
-              Open to Cyber &amp; IT Roles · 2025
+              Open to Cyber &amp; IT Roles · 2026
             </span>
           </div>
 
@@ -426,7 +448,7 @@ export default function Home() {
           <div className="flex min-w-max">
             {[
               { dot: true, label: "Seeking Cyber & IT Roles" },
-              { label: "2nd Year · SRM University" },
+              { label: "3rd Year · SRM University" },
               { label: "Ethical Hacking · Pentesting · Networking" },
               { label: "niikkunjmiglani@gmail.com" },
             ].map((item, i) => (
@@ -452,7 +474,7 @@ export default function Home() {
               <em className="italic text-orange-600">build the internet.</em>
             </h2>
             <p className="font-mono text-[13px] text-stone-500 leading-loose mb-4 sm:mb-5">
-              A cybersecurity-focused developer from Delhi, currently in my 2nd year at SRM University.
+              A cybersecurity-focused developer from Delhi, currently in my 3rd year at SRM University.
               My primary interest is offensive and defensive security — ethical hacking, vulnerability
               assessment, and IT/networking fundamentals.
             </p>
@@ -532,7 +554,7 @@ export default function Home() {
                 Selected Projects
               </h2>
             </div>
-            <span className="font-serif italic text-stone-400 text-base sm:text-lg">Six selected works</span>
+            <span className="font-serif italic text-stone-400 text-base sm:text-lg">Eight selected works</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
@@ -612,7 +634,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="font-mono text-[9px] tracking-[0.25em] text-stone-400 uppercase">
-                © 2025 Nikunj Miglani — Built with intention
+                © 2026 Nikunj Miglani — Built with intention
               </p>
             </div>
 
