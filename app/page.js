@@ -267,7 +267,7 @@ function MobileMenu({ open, onClose }) {
         </a>
       ))}
       <a
-        href="/Nikunjmiglani.pdf"
+        href="/nikunj_miglani_resume.pdf"
         download
         onClick={onClose}
         className="font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-3 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white mt-4 transition-all"
@@ -372,7 +372,7 @@ export default function Home() {
                 {["About", "Work", "Contact"][i]}
               </a>
             ))}
-            <a href="/Nikunjmiglani.pdf" download
+            <a href="/nikunj_miglani_resume.pdf" download
               className="text-[11px] tracking-[0.18em] uppercase font-mono px-4 py-2 border border-stone-400 text-stone-700 hover:bg-stone-800 hover:text-white hover:border-stone-800 transition-all">
               Get Resume ↗
             </a>
@@ -494,7 +494,7 @@ export default function Home() {
               ))}
             </div>
             <div className="flex gap-3 mt-6 sm:mt-8 flex-wrap">
-              <a href="/Nikunjmiglani.pdf" download
+              <a href="/nikunj_miglani_resume.pdf" download
                 className="font-mono text-[11px] tracking-[0.2em] uppercase px-5 sm:px-6 py-3 bg-orange-600 text-white border border-orange-600 hover:bg-transparent hover:text-orange-600 active:scale-95 transition-all">
                 Download CV
               </a>

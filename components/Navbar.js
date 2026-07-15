@@ -390,7 +390,7 @@ export default function Navbar() {
 
             {/* CV */}
             <motion.a
-              href="/Nikunjmiglani.pdf"
+              href="/nikunj_miglani_resume.pdf"
               download
               className="nm-panel-cv"
               initial={{ opacity: 0 }}
