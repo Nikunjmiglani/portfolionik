@@ -293,7 +293,7 @@ export default function Navbar() {
             <div className="nm-status-dot" />
             <span>Available</span>
           </div>
-          <a href="/Nikunjmiglani.pdf" download className="nm-resume">
+          <a href="/nikunj_miglani_resume.pdf" download className="nm-resume">
             Get Resume ↓
           </a>
           <button
